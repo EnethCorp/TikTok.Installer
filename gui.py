@@ -8,15 +8,23 @@ import asyncio
 DISC_LINK = "https://discord.com"
 TIKTOK_LINK = "https://tiktok.com"
 
-appdata =  os.path.abspath(os.path.join(os.getenv("LOCALAPPDATA"), os.pardir))
-file_path = os.path.join(appdata, "locallow\DefaultCompany\Tiktok_BallGame\key")
-unity_path = file_path = os.path.join(appdata, "locallow\DefaultCompany\Tiktok_BallGame\key")
 
+
+appdata =  os.path.abspath(os.path.join(os.getenv("LOCALAPPDATA"), os.pardir))
+key_file_path = os.path.join(appdata, r"locallow\DefaultCompany\Tiktok_BallGame\key")
+unity_path = os.path.join(appdata, r"local\DefaultCompany\Tiktok_BallGame\Tiktok.BallGame.exe")
+username_path = os.path.join(appdata, r"locallow\DefaultCompany\Tiktok_BallGame\username")
 
 preKey = ""
-if os.path.exists(file_path):
-    with open(file_path, "r") as f:
+if os.path.exists(key_file_path):
+    with open(key_file_path, "r") as f:
         preKey = f.read()
+
+preUser = ""
+if os.path.exists(username_path):
+    with open(username_path, "r") as f:
+        preUser = f.read()
+
 
 font = ("Roboto-Bold", 18, "bold")
 inputFont = ("Roboto-Bold", 10, "bold")
@@ -26,7 +34,7 @@ buttonFont = ("Roboto-Bold", 12, "bold")
 layout = [[sg.Column([[sg.Text("Intertok Games Login", font=font, background_color="#1a2835")]], element_justification="center", expand_x=True, background_color="#1a2835")], 
           
           [sg.Text("Username on TikTok:", font=keyFont, justification="left", background_color="#1a2835")],
-          [sg.Input("", font=inputFont, size=(350, 1), expand_x=True, justification="center", key="username_input")],
+          [sg.Input(preUser, font=inputFont, size=(350, 1), expand_x=True, justification="center", key="username_input")],
           
           [sg.Text("Key:", font=keyFont, justification="left", background_color="#1a2835"), sg.Text("", font=keyFont, key="errorMessage", text_color="red", background_color="#1a2835")], 
           [sg.Input(preKey, font=inputFont, size=(350, 1), expand_x=True, justification="center", key="key_input")], 
@@ -55,6 +63,10 @@ while True:
         webbrowser.open(TIKTOK_LINK)
     elif event == "Login":
         success = keyauth.checkLicense(str(window["key_input"].get()))
+
+        with open(username_path, "w") as f:
+            f.write(window["username_input"].get())
+
 
         if success:
             window.close()

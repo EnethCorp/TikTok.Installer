@@ -112,18 +112,23 @@ async def on_gift(event: GiftEvent):
         # Streakable gift & streak is over
         if event.gift.streakable and not event.gift.streaking:
             print(f"{event.user.unique_id} sent {event.gift.count}x \"{event.gift.info.name}\"")
+            events.append(dict( user=event.user.unique_id, event="gift", gift=event.gift.info.name, count=event.gift.count))
+            with open("log.txt", "a") as file:
+                file.write(f"{event.user.unique_id} sent {event.gift.count}x \"{event.gift.info.name}\"\n")
 
         # Non-streakable gift
         elif not event.gift.streakable:
             print(f"{event.user.unique_id} sent \"{event.gift.info.name}\"")
+            events.append(dict( user=event.user.unique_id, event="gift", gift=event.gift.info.name, count=event.gift.count))
+            with open("log.txt", "a") as file:
+                file.write(f"{event.user.unique_id} sent {event.gift.count}x \"{event.gift.info.name}\"\n")
 
-        events.append(dict( user=event.user.unique_id, event="gift", gift=event.gift.info.name, count=event.gift.count))
+        
         await downloadWrapper(event.user.unique_id, event.user.avatar.urls[1])
         global lastInteractionTime
         lastInteractionTime = time.monotonic()
 
-        with open("log.txt", "a") as file:
-            file.write(f"{event.user.unique_id} sent {event.gift.count}x \"{event.gift.info.name}\"\n")
+        
 
 @client.on("like")
 async def on_like(event: LikeEvent):
@@ -188,4 +193,6 @@ async def main():
     except Exception as e:
         print("caught exception!")
         print(e)
-     
+
+
+        

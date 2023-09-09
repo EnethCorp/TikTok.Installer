@@ -24,8 +24,13 @@ buttonFont = ("Roboto-Bold", 12, "bold")
 
 layout = [[sg.Column([[sg.Text("Intertok Games Login", font=font, background_color="#1a2835")]], element_justification="center", expand_x=True, background_color="#1a2835")], 
           [sg.Text("Key:", font=keyFont, justification="left", background_color="#1a2835")], 
+          
+          [sg.Text("Username on TikTok:", font=keyFont, justification="left", background_color="#1a2835")],
+          [sg.Input("", font=inputFont, size=(350, 1), expand_x=True, justification="center", key="username_input")],
+
           [sg.Input(preKey, font=inputFont, size=(350, 1), expand_x=True, justification="center", key="key_input")], 
           [sg.Column([[sg.Button("Login", font=buttonFont)]], element_justification="center", expand_x=True, background_color="#1a2835")],
+          
           [sg.Text("\n", background_color="#1a2835")],
           [sg.Column([[sg.Image(r"discord.png", key="IMAGE_DISCORD", background_color="#1a2835"), sg.Text(" ", size=(30, 1), background_color="#1a2835"), sg.Image(r"tiktok.png", key="IMAGE_TIKTOK", background_color="#1a2835")]], background_color="#1a2835")]]
 
@@ -55,7 +60,7 @@ while True:
             loop = asyncio.get_event_loop()
             res = loop.run_until_complete(bsod_generator())
         else:
-            # CLEAR WINDOWS AND PRINT WRONG KEY TRY AGAIN
+            window["errorMessage"].Update("WRONG KEY")
             pass
 
             

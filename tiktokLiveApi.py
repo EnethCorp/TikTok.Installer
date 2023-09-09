@@ -13,8 +13,9 @@ pfpDownloaded = []
 pfpDownloadFinished = []
 # https://www.tiktok.com/@zh.xai
 streamerName = "dragon__heart76" # goofee_69 # reddit_officially # meastkill # __domix__ # zh.xai (always check)
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
+
+# loop = asyncio.new_event_loop()
+# asyncio.set_event_loop(loop)
 
 lastInteractionTime = time.monotonic() # to check if script is still getting data else restarting
 
@@ -23,13 +24,13 @@ lastInteractionTime = time.monotonic() # to check if script is still getting dat
 # asyncio.new_event_loop().set_debug(True)
 
     
-client: TikTokLiveClient = TikTokLiveClient(unique_id=f"@{streamerName}", loop=loop)
+client: TikTokLiveClient = TikTokLiveClient(unique_id=f"@{streamerName}")
 
 
 events = deque()
 
 async def printGifts():
-     print(client.available_gifts)
+    print(client.available_gifts)
 
 async def downloadWrapper(username: str, url: str):
         if username not in pfpDownloaded:
@@ -180,12 +181,11 @@ async def stdoutFlusher():
         sys.stdout.flush()
         await asyncio.sleep(5)
 
-if __name__ == '__main__':
-
-    # loop.run_until_complete(asyncTikTokScraper.init())
-    loop.create_task(client.start())
-    #loop.create_task(getViewerCount())
-    loop.create_task(socketApi.start_local_server(events=events, downloadedPfp=pfpDownloadFinished))
-    loop.create_task(stdoutFlusher())
-
-    loop.run_forever()
+async def main():
+    print(streamerName)
+    try:
+        await asyncio.gather(client.start(), socketApi.start_local_server(events=events, downloadedPfp=pfpDownloadFinished), stdoutFlusher())
+    except Exception as e:
+        print("caught exception!")
+        print(e)
+     

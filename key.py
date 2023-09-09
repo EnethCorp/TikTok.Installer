@@ -9,7 +9,7 @@ If that doesn't work for you, you can paste the contents of KeyAuth.py ABOVE thi
 
 READ HERE TO LEARN ABOUT KEYAUTH FUNCTIONS https://github.com/KeyAuth/KeyAuth-Python-Example#keyauthapp-instance-definition
 '''
-from keyauth import api
+
 
 import sys
 import time
@@ -21,8 +21,9 @@ from datetime import datetime
 import sys
 from pathlib import Path
 from os import getenv
-from hwid import generate_device_identifier
 import win32security
+from keyauth import api
+
 
 
 def clear():
@@ -97,7 +98,7 @@ def checkLicense(key: str):
         file.write(hwid + "\n")
     
     with open(key_path, "w") as file:
-        file.write(key + "\n")
+        file.write(key)
 
     print(key)
 

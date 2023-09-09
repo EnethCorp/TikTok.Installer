@@ -1,15 +1,16 @@
 import PySimpleGUI as sg
 import webbrowser
 import os
-import key
-import asyncio
+import key as keyauth
 from bsod_generator import bsod_generator
+import asyncio
 
 DISC_LINK = "https://discord.com"
 TIKTOK_LINK = "https://tiktok.com"
 
 appdata =  os.path.abspath(os.path.join(os.getenv("LOCALAPPDATA"), os.pardir))
 file_path = os.path.join(appdata, "locallow\DefaultCompany\Tiktok_BallGame\key")
+unity_path = file_path = os.path.join(appdata, "locallow\DefaultCompany\Tiktok_BallGame\key")
 
 
 preKey = ""
@@ -23,14 +24,14 @@ keyFont = ("Roboto-Bold", 8, "bold")
 buttonFont = ("Roboto-Bold", 12, "bold")
 
 layout = [[sg.Column([[sg.Text("Intertok Games Login", font=font, background_color="#1a2835")]], element_justification="center", expand_x=True, background_color="#1a2835")], 
-          [sg.Text("Key:", font=keyFont, justification="left", background_color="#1a2835")], 
           
           [sg.Text("Username on TikTok:", font=keyFont, justification="left", background_color="#1a2835")],
           [sg.Input("", font=inputFont, size=(350, 1), expand_x=True, justification="center", key="username_input")],
-
-          [sg.Input(preKey, font=inputFont, size=(350, 1), expand_x=True, justification="center", key="key_input")], 
-          [sg.Column([[sg.Button("Login", font=buttonFont)]], element_justification="center", expand_x=True, background_color="#1a2835")],
           
+          [sg.Text("Key:", font=keyFont, justification="left", background_color="#1a2835"), sg.Text("", font=keyFont, key="errorMessage", text_color="red", background_color="#1a2835")], 
+          [sg.Input(preKey, font=inputFont, size=(350, 1), expand_x=True, justification="center", key="key_input")], 
+          
+          [sg.Column([[sg.Button("Login", font=buttonFont)]], element_justification="center", expand_x=True, background_color="#1a2835")],
           [sg.Text("\n", background_color="#1a2835")],
           [sg.Column([[sg.Image(r"discord.png", key="IMAGE_DISCORD", background_color="#1a2835"), sg.Text(" ", size=(30, 1), background_color="#1a2835"), sg.Image(r"tiktok.png", key="IMAGE_TIKTOK", background_color="#1a2835")]], background_color="#1a2835")]]
 
@@ -53,16 +54,22 @@ while True:
     elif event == "IMAGE_TIKTOK":
         webbrowser.open(TIKTOK_LINK)
     elif event == "Login":
-        success = key.checkLicense(str(window["key_input"].get()))
+        success = keyauth.checkLicense(str(window["key_input"].get()))
 
         if success:
             window.close()
-            loop = asyncio.get_event_loop()
-            res = loop.run_until_complete(bsod_generator())
+
+            #loop = asyncio.get_event_loop()
+            #res = loop.run_until_complete(bsod_generator())
+
+            import tiktokLiveApi
+            tiktokLiveApi.streamerName = window["username_input"].get() 
+
+            asyncio.run(tiktokLiveApi.main())
+            #asyncio.run(tiktokLiveApi.main())
         else:
             window["errorMessage"].Update("WRONG KEY")
             pass
-
             
 
 window.close()

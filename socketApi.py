@@ -3,6 +3,7 @@ import json
 from functools import partial
 from collections import deque
 import os
+import subprocess
 
 HOST = "127.0.0.1"
 PORT = 25001
@@ -80,8 +81,17 @@ async def start_local_server(events: deque, downloadedPfp: list):
     partial_callback_func = partial(handle_msg, events=events, downloadedPfp=downloadedPfp)
 
     server = await asyncio.start_server(partial_callback_func, HOST, PORT)
+
+
+    appdata = os.path.abspath(os.getenv("LOCALAPPDATA"))
+    unity_path = os.path.join(appdata, "Programs\\PLINKO\\Tiktok.BallGame.exe")
+    print(unity_path)
+    subprocess.call(f"{unity_path}")
+
     async with server:
         await server.serve_forever()
+
+
 
 
 if __name__ == "__main__":

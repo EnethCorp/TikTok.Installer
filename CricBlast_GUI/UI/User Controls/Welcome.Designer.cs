@@ -1,4 +1,6 @@
 ﻿
+using System.Drawing;
+
 namespace CricBlast_GUI.UI.User_Controls
 {
     partial class Welcome
@@ -37,20 +39,18 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label3 = new System.Windows.Forms.Label();
             this.forgotPassword = new System.Windows.Forms.Label();
             this.createAccountLabel = new System.Windows.Forms.Label();
-            this.passwordTextBox = new Guna.UI2.WinForms.Guna2TextBox();
+            this.passwordTextBox = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.usernameRequired = new System.Windows.Forms.Label();
             this.passwordRequired = new System.Windows.Forms.Label();
             this.refreshPicture = new Guna.UI2.WinForms.Guna2PictureBox();
             this.loginAsPicture = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.eyePicture = new Guna.UI2.WinForms.Guna2PictureBox();
             this.logo = new System.Windows.Forms.PictureBox();
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.refreshPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginAsPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eyePicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,9 +98,9 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.usernameLabel.Location = new System.Drawing.Point(731, 248);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(205, 25);
+            this.usernameLabel.Size = new System.Drawing.Size(87, 25);
             this.usernameLabel.TabIndex = 18;
-            this.usernameLabel.Text = "USERNAME OR EMAIL";
+            this.usernameLabel.Text = "User Key";
             // 
             // usernameTextBox
             // 
@@ -124,7 +124,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.PasswordChar = '\0';
-            this.usernameTextBox.PlaceholderText = "Enter your name or email...";
+            this.usernameTextBox.PlaceholderText = "Please enter your key...";
             this.usernameTextBox.SelectedText = "";
             this.usernameTextBox.ShadowDecoration.Parent = this.usernameTextBox;
             this.usernameTextBox.Size = new System.Drawing.Size(409, 47);
@@ -141,79 +141,40 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(731, 349);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 25);
+            this.label3.Size = new System.Drawing.Size(157, 25);
             this.label3.TabIndex = 17;
-            this.label3.Text = "PASSWORD";
+            this.label3.Text = "TikTok Username";
             // 
             // forgotPassword
             // 
-            this.forgotPassword.AutoSize = true;
-            this.forgotPassword.BackColor = System.Drawing.Color.Transparent;
-            this.forgotPassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.forgotPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.forgotPassword.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.forgotPassword.Location = new System.Drawing.Point(731, 431);
+            this.forgotPassword.Location = new System.Drawing.Point(0, 0);
             this.forgotPassword.Name = "forgotPassword";
-            this.forgotPassword.Size = new System.Drawing.Size(178, 21);
-            this.forgotPassword.TabIndex = 16;
-            this.forgotPassword.Text = "Forgot your password?";
-            this.forgotPassword.Click += new System.EventHandler(this.forgotPassword_Click);
+            this.forgotPassword.Size = new System.Drawing.Size(100, 23);
+            this.forgotPassword.TabIndex = 33;
             // 
             // createAccountLabel
             // 
-            this.createAccountLabel.AutoSize = true;
-            this.createAccountLabel.BackColor = System.Drawing.Color.Transparent;
-            this.createAccountLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.createAccountLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createAccountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(164)))), ((int)(((byte)(255)))));
-            this.createAccountLabel.Location = new System.Drawing.Point(909, 534);
+            this.createAccountLabel.Location = new System.Drawing.Point(0, 0);
             this.createAccountLabel.Name = "createAccountLabel";
-            this.createAccountLabel.Size = new System.Drawing.Size(148, 21);
-            this.createAccountLabel.TabIndex = 15;
-            this.createAccountLabel.Text = " Create an Account";
-            this.createAccountLabel.Click += new System.EventHandler(this.createAccountLabel_Click);
+            this.createAccountLabel.Size = new System.Drawing.Size(100, 23);
+            this.createAccountLabel.TabIndex = 32;
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Animated = true;
-            this.passwordTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.passwordTextBox.BorderRadius = 3;
-            this.passwordTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.passwordTextBox.DefaultText = "";
-            this.passwordTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.passwordTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.passwordTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.passwordTextBox.DisabledState.Parent = this.passwordTextBox;
-            this.passwordTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.passwordTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.passwordTextBox.FocusedState.Parent = this.passwordTextBox;
-            this.passwordTextBox.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.passwordTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.passwordTextBox.HoverState.Parent = this.passwordTextBox;
+            this.passwordTextBox.BackColor = System.Drawing.Color.White;
+            this.passwordTextBox.Font = new System.Drawing.Font("Segoe UI", 25F);
             this.passwordTextBox.Location = new System.Drawing.Point(736, 379);
-            this.passwordTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.PasswordChar = '\0';
-            this.passwordTextBox.PlaceholderText = "Enter your password...";
-            this.passwordTextBox.SelectedText = "";
-            this.passwordTextBox.ShadowDecoration.Parent = this.passwordTextBox;
             this.passwordTextBox.Size = new System.Drawing.Size(409, 47);
-            this.passwordTextBox.TabIndex = 2;
-            this.passwordTextBox.UseSystemPasswordChar = true;
-            this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
-            this.passwordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextBox_KeyDown);
+            this.passwordTextBox.TabIndex = 31;
+            this.passwordTextBox.Text = "Enter your username...";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(830, 534);
+            this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 21);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "New here?";
+            this.label5.Size = new System.Drawing.Size(100, 23);
+            this.label5.TabIndex = 29;
             // 
             // usernameRequired
             // 
@@ -221,7 +182,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameRequired.BackColor = System.Drawing.Color.Transparent;
             this.usernameRequired.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameRequired.ForeColor = System.Drawing.Color.Red;
-            this.usernameRequired.Location = new System.Drawing.Point(931, 248);
+            this.usernameRequired.Location = new System.Drawing.Point(810, 248);
             this.usernameRequired.Name = "usernameRequired";
             this.usernameRequired.Size = new System.Drawing.Size(97, 25);
             this.usernameRequired.TabIndex = 28;
@@ -230,16 +191,10 @@ namespace CricBlast_GUI.UI.User_Controls
             // 
             // passwordRequired
             // 
-            this.passwordRequired.AutoSize = true;
-            this.passwordRequired.BackColor = System.Drawing.Color.Transparent;
-            this.passwordRequired.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordRequired.ForeColor = System.Drawing.Color.Red;
-            this.passwordRequired.Location = new System.Drawing.Point(839, 349);
+            this.passwordRequired.Location = new System.Drawing.Point(0, 0);
             this.passwordRequired.Name = "passwordRequired";
-            this.passwordRequired.Size = new System.Drawing.Size(97, 25);
-            this.passwordRequired.TabIndex = 28;
-            this.passwordRequired.Text = "- required";
-            this.passwordRequired.Visible = false;
+            this.passwordRequired.Size = new System.Drawing.Size(100, 23);
+            this.passwordRequired.TabIndex = 0;
             // 
             // refreshPicture
             // 
@@ -282,22 +237,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.guna2PictureBox3.TabIndex = 23;
             this.guna2PictureBox3.TabStop = false;
             // 
-            // eyePicture
-            // 
-            this.eyePicture.BackColor = System.Drawing.Color.Transparent;
-            this.eyePicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.eyePicture.Image = global::CricBlast_GUI.Properties.Resources.Eye_Close;
-            this.eyePicture.ImageRotate = 0F;
-            this.eyePicture.Location = new System.Drawing.Point(1103, 385);
-            this.eyePicture.Name = "eyePicture";
-            this.eyePicture.ShadowDecoration.Parent = this.eyePicture;
-            this.eyePicture.Size = new System.Drawing.Size(32, 34);
-            this.eyePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.eyePicture.TabIndex = 22;
-            this.eyePicture.TabStop = false;
-            this.eyePicture.UseTransparentBackground = true;
-            this.eyePicture.Click += new System.EventHandler(this.eyePicture_Click);
-            // 
             // logo
             // 
             this.logo.BackColor = System.Drawing.Color.Transparent;
@@ -327,7 +266,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.Controls.Add(this.loginAsPicture);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.guna2PictureBox3);
-            this.Controls.Add(this.eyePicture);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.createAccountLabel);
             this.Controls.Add(this.forgotPassword);
@@ -344,7 +282,6 @@ namespace CricBlast_GUI.UI.User_Controls
             ((System.ComponentModel.ISupportInitialize)(this.refreshPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginAsPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eyePicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -358,8 +295,7 @@ namespace CricBlast_GUI.UI.User_Controls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label forgotPassword;
         private System.Windows.Forms.Label createAccountLabel;
-        private Guna.UI2.WinForms.Guna2TextBox passwordTextBox;
-        private Guna.UI2.WinForms.Guna2PictureBox eyePicture;
+        private System.Windows.Forms.Label passwordTextBox;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox3;
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2PictureBox loginAsPicture;

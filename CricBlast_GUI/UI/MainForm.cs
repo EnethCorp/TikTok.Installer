@@ -15,16 +15,8 @@ namespace CricBlast_GUI.UI
 
         private void GetStarted_Click(object sender, EventArgs e)
         {
-            if (Login.IsDatabaseConnected())
-            {
-                mainPanel.Controls.Clear();
-                mainPanel.Controls.Add(value: new Welcome());
-            }
-            else
-            {
-                new MessageBoxOk(2, "The database is not properly connected. Please fix that and try again.")
-                    .ShowDialog();
-            }
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(value: new Welcome());
         }
 
         private void infoButton_Click(object sender, EventArgs e)

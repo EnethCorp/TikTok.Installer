@@ -87,7 +87,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.genderRadioFemale.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.genderRadioFemale.Location = new System.Drawing.Point(954, 391);
             this.genderRadioFemale.Name = "genderRadioFemale";
-            this.genderRadioFemale.Size = new System.Drawing.Size(111, 36);
+            this.genderRadioFemale.Size = new System.Drawing.Size(110, 36);
             this.genderRadioFemale.TabIndex = 32;
             this.genderRadioFemale.Text = "Female";
             this.genderRadioFemale.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -110,7 +110,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.genderRadioMale.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.genderRadioMale.Location = new System.Drawing.Point(844, 391);
             this.genderRadioMale.Name = "genderRadioMale";
-            this.genderRadioMale.Size = new System.Drawing.Size(87, 36);
+            this.genderRadioMale.Size = new System.Drawing.Size(86, 36);
             this.genderRadioMale.TabIndex = 31;
             this.genderRadioMale.Text = "Male";
             this.genderRadioMale.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -178,7 +178,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label9.Location = new System.Drawing.Point(700, 450);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 32);
+            this.label9.Size = new System.Drawing.Size(79, 32);
             this.label9.TabIndex = 20;
             this.label9.Text = "Photo";
             // 
@@ -190,7 +190,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label12.Location = new System.Drawing.Point(700, 393);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(95, 32);
+            this.label12.Size = new System.Drawing.Size(94, 32);
             this.label12.TabIndex = 23;
             this.label12.Text = "Gender";
             // 
@@ -231,7 +231,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label7.Location = new System.Drawing.Point(700, 279);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 32);
+            this.label7.Size = new System.Drawing.Size(115, 32);
             this.label7.TabIndex = 19;
             this.label7.Text = "Password";
             // 
@@ -255,7 +255,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label10.Location = new System.Drawing.Point(700, 507);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(104, 32);
+            this.label10.Size = new System.Drawing.Size(103, 32);
             this.label10.TabIndex = 17;
             this.label10.Text = "Captcha";
             // 
@@ -267,7 +267,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label8.Location = new System.Drawing.Point(700, 336);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 32);
+            this.label8.Size = new System.Drawing.Size(83, 32);
             this.label8.TabIndex = 16;
             this.label8.Text = "Phone";
             // 
@@ -307,7 +307,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(700, 222);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 32);
+            this.label3.Size = new System.Drawing.Size(72, 32);
             this.label3.TabIndex = 15;
             this.label3.Text = "Email";
             // 
@@ -348,7 +348,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Location = new System.Drawing.Point(700, 165);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 32);
+            this.label2.Size = new System.Drawing.Size(124, 32);
             this.label2.TabIndex = 14;
             this.label2.Text = "Username";
             // 
@@ -396,7 +396,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameError.ForeColor = System.Drawing.Color.Red;
             this.usernameError.Location = new System.Drawing.Point(1173, 165);
             this.usernameError.Name = "usernameError";
-            this.usernameError.Size = new System.Drawing.Size(22, 32);
+            this.usernameError.Size = new System.Drawing.Size(21, 32);
             this.usernameError.TabIndex = 34;
             this.usernameError.Text = "!";
             this.usernameError.Visible = false;
@@ -409,7 +409,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.emailError.ForeColor = System.Drawing.Color.Red;
             this.emailError.Location = new System.Drawing.Point(1173, 222);
             this.emailError.Name = "emailError";
-            this.emailError.Size = new System.Drawing.Size(22, 32);
+            this.emailError.Size = new System.Drawing.Size(21, 32);
             this.emailError.TabIndex = 34;
             this.emailError.Text = "!";
             this.emailError.Visible = false;
@@ -422,7 +422,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.passwordError.ForeColor = System.Drawing.Color.Red;
             this.passwordError.Location = new System.Drawing.Point(1173, 279);
             this.passwordError.Name = "passwordError";
-            this.passwordError.Size = new System.Drawing.Size(22, 32);
+            this.passwordError.Size = new System.Drawing.Size(21, 32);
             this.passwordError.TabIndex = 34;
             this.passwordError.Text = "!";
             this.passwordError.Visible = false;
@@ -435,7 +435,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.mobileError.ForeColor = System.Drawing.Color.Red;
             this.mobileError.Location = new System.Drawing.Point(1173, 336);
             this.mobileError.Name = "mobileError";
-            this.mobileError.Size = new System.Drawing.Size(22, 32);
+            this.mobileError.Size = new System.Drawing.Size(21, 32);
             this.mobileError.TabIndex = 34;
             this.mobileError.Text = "!";
             this.mobileError.Visible = false;
@@ -448,7 +448,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.genderError.ForeColor = System.Drawing.Color.Red;
             this.genderError.Location = new System.Drawing.Point(1062, 393);
             this.genderError.Name = "genderError";
-            this.genderError.Size = new System.Drawing.Size(22, 32);
+            this.genderError.Size = new System.Drawing.Size(21, 32);
             this.genderError.TabIndex = 34;
             this.genderError.Text = "!";
             this.genderError.Visible = false;
@@ -504,6 +504,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // captchaError
             // 
@@ -513,7 +514,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.captchaError.ForeColor = System.Drawing.Color.Red;
             this.captchaError.Location = new System.Drawing.Point(1173, 507);
             this.captchaError.Name = "captchaError";
-            this.captchaError.Size = new System.Drawing.Size(22, 32);
+            this.captchaError.Size = new System.Drawing.Size(21, 32);
             this.captchaError.TabIndex = 34;
             this.captchaError.Text = "!";
             this.captchaError.Visible = false;
@@ -692,7 +693,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.photoError.ForeColor = System.Drawing.Color.Red;
             this.photoError.Location = new System.Drawing.Point(1171, 450);
             this.photoError.Name = "photoError";
-            this.photoError.Size = new System.Drawing.Size(22, 32);
+            this.photoError.Size = new System.Drawing.Size(21, 32);
             this.photoError.TabIndex = 41;
             this.photoError.Text = "!";
             this.photoError.Visible = false;

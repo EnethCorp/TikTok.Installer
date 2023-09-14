@@ -149,6 +149,11 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             usernameTextBox.Focus();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

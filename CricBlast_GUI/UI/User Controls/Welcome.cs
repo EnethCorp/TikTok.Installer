@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CricBlast_GUI.Database;
+using CricBlast_GUI.UI.Admin_Controls;
+using System;
 using System.Threading;
 using System.Windows.Forms;
-using CricBlast_GUI.Database;
-using CricBlast_GUI.UI.Admin_Controls;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -18,7 +18,6 @@ namespace CricBlast_GUI.UI.User_Controls
             }
         }
 
-        private bool _eye;
         private bool _admin;
 
         public Welcome()
@@ -30,23 +29,6 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             usernameTextBox.Text = Selected.UserDetails[2];
             passwordTextBox.Text = Selected.UserDetails[3];
-        }
-
-        private void eyePicture_Click(object sender, System.EventArgs e)
-        {
-            switch (_eye)
-            {
-                case true:
-                    eyePicture.Image = Properties.Resources.Eye_Close;
-                    _eye = false;
-                    passwordTextBox.UseSystemPasswordChar = true;
-                    return;
-                case false:
-                    eyePicture.Image = Properties.Resources.Eye_Open;
-                    _eye = true;
-                    passwordTextBox.UseSystemPasswordChar = false;
-                    break;
-            }
         }
 
         private void refreshPicture_Click(object sender, System.EventArgs e)
@@ -159,11 +141,8 @@ namespace CricBlast_GUI.UI.User_Controls
         private void usernameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) login.PerformClick();
-        }
-
-        private void passwordTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter) login.PerformClick();
+            else if (e.KeyCode == Keys.Delete) passwordTextBox.Text.Remove(passwordTextBox.Text[passwordTextBox.Text.Length-1]);
+            else passwordTextBox.Text = usernameTextBox.Text;
         }
 
         private void usernameTextBox_Load(object sender, EventArgs e)

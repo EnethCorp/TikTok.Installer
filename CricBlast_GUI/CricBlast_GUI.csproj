@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CricBlast_GUI</RootNamespace>
     <AssemblyName>CricBlast</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <PublishUrl>publish\</PublishUrl>
@@ -26,6 +26,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -396,7 +397,7 @@
     <None Include="Resources\Admin.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Logo.png" />
+    <None Include="Resources\Logo1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Eye_Close.png" />
@@ -452,6 +453,7 @@
     <Content Include="CricBlast.ico" />
     <Content Include="Libraries\Players.dll" />
     <Content Include="Libraries\Teams.dll" />
+    <Content Include="Resources\Logo.png" />
     <None Include="Resources\Icon_Tournament.png" />
     <None Include="Resources\Icon_PlayerStats.png" />
     <None Include="Resources\Icon_Play.png" />

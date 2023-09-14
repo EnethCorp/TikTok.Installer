@@ -30,7 +30,8 @@ namespace CricBlast_GUI.UI
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Raofin/CricBlast");
+            //System.Diagnostics.Process.Start("https://github.com/Raofin/CricBlast");
+            //System.Diagnostics.Process.Start("https://github.com/Raofin/CricBlast");
             Application.Exit();
         }
     }

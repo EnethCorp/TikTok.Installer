@@ -453,6 +453,7 @@
     <Content Include="CricBlast.ico" />
     <Content Include="Libraries\Players.dll" />
     <Content Include="Libraries\Teams.dll" />
+    <None Include="Resources\discord.png" />
     <Content Include="Resources\Logo.png" />
     <None Include="Resources\Icon_Tournament.png" />
     <None Include="Resources\Icon_PlayerStats.png" />

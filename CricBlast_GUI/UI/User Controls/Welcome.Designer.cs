@@ -43,15 +43,13 @@ namespace CricBlast_GUI.UI.User_Controls
             this.label5 = new System.Windows.Forms.Label();
             this.usernameRequired = new System.Windows.Forms.Label();
             this.passwordRequired = new System.Windows.Forms.Label();
-            this.refreshPicture = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.loginAsPicture = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.logo = new System.Windows.Forms.PictureBox();
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.refreshPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loginAsPicture)).BeginInit();
+            this.loginAsPicture = new Guna.UI2.WinForms.Guna2PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginAsPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // login
@@ -196,36 +194,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.passwordRequired.Size = new System.Drawing.Size(100, 23);
             this.passwordRequired.TabIndex = 0;
             // 
-            // refreshPicture
-            // 
-            this.refreshPicture.BackColor = System.Drawing.Color.Transparent;
-            this.refreshPicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.refreshPicture.Image = global::CricBlast_GUI.Properties.Resources.Refresh_Colored;
-            this.refreshPicture.ImageRotate = 0F;
-            this.refreshPicture.Location = new System.Drawing.Point(1126, 250);
-            this.refreshPicture.Name = "refreshPicture";
-            this.refreshPicture.ShadowDecoration.Parent = this.refreshPicture;
-            this.refreshPicture.Size = new System.Drawing.Size(18, 18);
-            this.refreshPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.refreshPicture.TabIndex = 27;
-            this.refreshPicture.TabStop = false;
-            this.refreshPicture.UseTransparentBackground = true;
-            this.refreshPicture.Click += new System.EventHandler(this.refreshPicture_Click);
-            // 
-            // loginAsPicture
-            // 
-            this.loginAsPicture.BackColor = System.Drawing.Color.Transparent;
-            this.loginAsPicture.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.loginAsPicture.Image = global::CricBlast_GUI.Properties.Resources.Unknown_User;
-            this.loginAsPicture.ImageRotate = 0F;
-            this.loginAsPicture.Location = new System.Drawing.Point(1095, 247);
-            this.loginAsPicture.Name = "loginAsPicture";
-            this.loginAsPicture.ShadowDecoration.Parent = this.loginAsPicture;
-            this.loginAsPicture.Size = new System.Drawing.Size(25, 26);
-            this.loginAsPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.loginAsPicture.TabIndex = 25;
-            this.loginAsPicture.TabStop = false;
-            // 
             // guna2PictureBox3
             // 
             this.guna2PictureBox3.FillColor = System.Drawing.Color.Black;
@@ -254,6 +222,21 @@ namespace CricBlast_GUI.UI.User_Controls
             this.DragControl.TargetControl = this;
             this.DragControl.TransparentWhileDrag = false;
             // 
+            // loginAsPicture
+            // 
+            this.loginAsPicture.BackColor = System.Drawing.Color.Transparent;
+            this.loginAsPicture.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.loginAsPicture.Image = global::CricBlast_GUI.Properties.Resources.discord;
+            this.loginAsPicture.ImageRotate = 0F;
+            this.loginAsPicture.Location = new System.Drawing.Point(1105, 226);
+            this.loginAsPicture.Name = "loginAsPicture";
+            this.loginAsPicture.ShadowDecoration.Parent = this.loginAsPicture;
+            this.loginAsPicture.Size = new System.Drawing.Size(40, 48);
+            this.loginAsPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.loginAsPicture.TabIndex = 25;
+            this.loginAsPicture.TabStop = false;
+            this.loginAsPicture.Click += new System.EventHandler(this.loginAsPicture_Click);
+            // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,7 +245,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Background;
             this.Controls.Add(this.passwordRequired);
             this.Controls.Add(this.usernameRequired);
-            this.Controls.Add(this.refreshPicture);
             this.Controls.Add(this.loginAsPicture);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.guna2PictureBox3);
@@ -279,10 +261,9 @@ namespace CricBlast_GUI.UI.User_Controls
             this.Name = "Welcome";
             this.Size = new System.Drawing.Size(1280, 720);
             this.Load += new System.EventHandler(this.Welcome_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.refreshPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loginAsPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginAsPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,12 +279,11 @@ namespace CricBlast_GUI.UI.User_Controls
         private System.Windows.Forms.Label passwordTextBox;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox3;
         private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2PictureBox loginAsPicture;
-        private Guna.UI2.WinForms.Guna2PictureBox refreshPicture;
         private System.Windows.Forms.Label usernameRequired;
         private System.Windows.Forms.Label passwordRequired;
         public System.Windows.Forms.Label welcomeLabel;
         private System.Windows.Forms.PictureBox logo;
         private Guna.UI2.WinForms.Guna2DragControl DragControl;
+        private Guna.UI2.WinForms.Guna2PictureBox loginAsPicture;
     }
 }

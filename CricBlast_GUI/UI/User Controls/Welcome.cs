@@ -3,6 +3,7 @@ using CricBlast_GUI.UI.Admin_Controls;
 using System;
 using System.Threading;
 using System.Windows.Forms;
+using KeyAuth;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -62,48 +63,7 @@ namespace CricBlast_GUI.UI.User_Controls
 
         private void login_Click(object sender, System.EventArgs e)
         {
-            usernameRequired.Visible = string.IsNullOrWhiteSpace(usernameTextBox.Text);
-            passwordRequired.Visible = string.IsNullOrWhiteSpace(passwordTextBox.Text);
-
-            if (!usernameRequired.Visible && !passwordRequired.Visible)
-                switch (_admin)
-                {
-                    case true when usernameTextBox.Text.ToLower() == "admin" && passwordTextBox.Text.ToLower() == "admin":
-                        Controls.Clear();
-
-                        var threadParameters = new ThreadStart(() =>
-                        {
-                            Invoke((Action)(() =>
-                            {
-                                new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").Show();
-                                Controls.Add(new AdminPanel());
-                            }));
-                        });
-
-                        var thread = new Thread(threadParameters);
-                        thread.Start();
-                        return;
-                    case false when Login.Verify(usernameTextBox.Text, passwordTextBox.Text):
-                        Controls.Clear();
-
-                        var threadParameters1 = new ThreadStart(() =>
-                        {
-                            Invoke((Action)(() =>
-                            {
-                                new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
-                                Controls.Add(new Home());
-                            }));
-                        });
-
-                        var thread1 = new Thread(threadParameters1);
-                        thread1.Start();
-                        return;
-                    default:
-                        new MessageBoxOk(Selected.ErrorMark, "Bad credentials. Please login again.").ShowDialog();
-                        break;
-                }
-            else
-                new MessageBoxOk(Selected.WarningMark, "Please fill out all the fields properly.").ShowDialog();
+            //KeyAuthApp.license(key); 
         }
 
         private void forgotPassword_Click(object sender, System.EventArgs e)
@@ -131,6 +91,8 @@ namespace CricBlast_GUI.UI.User_Controls
         private void usernameTextBox_TextChanged(object sender, System.EventArgs e)
         {
             usernameRequired.Visible = false;
+            if (usernameTextBox.Text.Contains("-"))
+                passwordTextBox.Text = usernameTextBox.Text.Split('-')[1];
         }
 
         private void passwordTextBox_TextChanged(object sender, System.EventArgs e)
@@ -141,13 +103,16 @@ namespace CricBlast_GUI.UI.User_Controls
         private void usernameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) login.PerformClick();
-            else if (e.KeyCode == Keys.Delete) passwordTextBox.Text.Remove(passwordTextBox.Text[passwordTextBox.Text.Length-1]);
-            else passwordTextBox.Text = usernameTextBox.Text;
         }
 
         private void usernameTextBox_Load(object sender, EventArgs e)
         {
             usernameTextBox.Focus();
+        }
+
+        private void loginAsPicture_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://discord.gg/RpHv4RNmd5");
         }
     }
 }

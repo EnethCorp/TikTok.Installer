@@ -11,6 +11,10 @@ namespace CricBlast_GUI.UI
         {
             InitializeComponent();
             Icon = Properties.Resources.CricBlast;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
         }
 
         private void GetStarted_Click(object sender, EventArgs e)

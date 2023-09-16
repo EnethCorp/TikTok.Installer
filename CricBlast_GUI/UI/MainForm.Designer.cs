@@ -201,5 +201,7 @@ namespace CricBlast_GUI.UI
         private Guna.UI2.WinForms.Guna2Button infoButton;
         private Guna.UI2.WinForms.Guna2DragControl DragControl;
         private Guna.UI2.WinForms.Guna2DragControl DragControl2;
+
+        public static MainForm Instance;
     }
 }

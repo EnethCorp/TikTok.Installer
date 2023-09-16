@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CricBlast_GUI.UI.Admin_Controls;
+using CricBlast_GUI.UI.User_Controls;
+using System;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CricBlast_GUI.UI
@@ -42,6 +45,22 @@ namespace CricBlast_GUI.UI
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            if (this.message.Text.Equals("You have successfully logged in.")) {
+                /* Login success */
+                okButton.Controls.Clear();
+                Console.WriteLine("MainPanel: " + MainForm.Instance);
+                MainForm.Instance.mainPanel.Controls.Clear();
+                //MainForm.Instance.mainPanel.Controls.Add(value: new Welcome());
+            }
+            else {
+                /* Login Fail */
+                okButton.Controls.Clear();
+                Console.WriteLine("MainPanel: " + MainForm.Instance);
+                MainForm.Instance.mainPanel.Controls.Clear();
+                MainForm.Instance.mainPanel.Controls.Add(value: new Welcome());
+            }
+
+
             Close();
         }
     }

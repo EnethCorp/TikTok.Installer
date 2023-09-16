@@ -35,7 +35,7 @@ namespace CricBlast_GUI.UI
             this.okButton = new Guna.UI2.WinForms.Guna2Button();
             this.BorderlessForm = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.teamSelectError = new System.Windows.Forms.Label();
-            this.cricBlastLabel = new System.Windows.Forms.Label();
+            this.interTokLabel = new System.Windows.Forms.Label();
             this.cricBlastPicture = new System.Windows.Forms.PictureBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             ((System.ComponentModel.ISupportInitialize)(this.cricBlastPicture)).BeginInit();
@@ -56,14 +56,9 @@ namespace CricBlast_GUI.UI
             this.teamComboBox.ItemHeight = 30;
             this.teamComboBox.Items.AddRange(new object[] {
             "Select...",
-            "Australia",
-            "Bangladesh",
-            "India",
-            "New Zealand",
-            "Pakistan",
-            "South Africa",
-            "Sri Lanka",
-            "West Indies"});
+            "Plinko",
+            "Territory War",
+            "Pinball"});
             this.teamComboBox.ItemsAppearance.Parent = this.teamComboBox;
             this.teamComboBox.Location = new System.Drawing.Point(90, 90);
             this.teamComboBox.Name = "teamComboBox";
@@ -123,22 +118,22 @@ namespace CricBlast_GUI.UI
             this.teamSelectError.ForeColor = System.Drawing.Color.Red;
             this.teamSelectError.Location = new System.Drawing.Point(387, 92);
             this.teamSelectError.Name = "teamSelectError";
-            this.teamSelectError.Size = new System.Drawing.Size(22, 32);
+            this.teamSelectError.Size = new System.Drawing.Size(21, 32);
             this.teamSelectError.TabIndex = 35;
             this.teamSelectError.Text = "!";
             this.teamSelectError.Visible = false;
             // 
-            // cricBlastLabel
+            // interTokLabel
             // 
-            this.cricBlastLabel.AutoSize = true;
-            this.cricBlastLabel.BackColor = System.Drawing.Color.Transparent;
-            this.cricBlastLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.cricBlastLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cricBlastLabel.Location = new System.Drawing.Point(34, 10);
-            this.cricBlastLabel.Name = "cricBlastLabel";
-            this.cricBlastLabel.Size = new System.Drawing.Size(76, 21);
-            this.cricBlastLabel.TabIndex = 38;
-            this.cricBlastLabel.Text = "CricBlast";
+            this.interTokLabel.AutoSize = true;
+            this.interTokLabel.BackColor = System.Drawing.Color.Transparent;
+            this.interTokLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.interTokLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.interTokLabel.Location = new System.Drawing.Point(34, 10);
+            this.interTokLabel.Name = "interTokLabel";
+            this.interTokLabel.Size = new System.Drawing.Size(76, 21);
+            this.interTokLabel.TabIndex = 38;
+            this.interTokLabel.Text = "InterTok";
             // 
             // cricBlastPicture
             // 
@@ -175,7 +170,7 @@ namespace CricBlast_GUI.UI
             this.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(473, 231);
-            this.Controls.Add(this.cricBlastLabel);
+            this.Controls.Add(this.interTokLabel);
             this.Controls.Add(this.cricBlastPicture);
             this.Controls.Add(this.guna2ControlBox1);
             this.Controls.Add(this.teamSelectError);
@@ -200,7 +195,7 @@ namespace CricBlast_GUI.UI
         private Guna.UI2.WinForms.Guna2Button okButton;
         private Guna.UI2.WinForms.Guna2BorderlessForm BorderlessForm;
         private System.Windows.Forms.Label teamSelectError;
-        private System.Windows.Forms.Label cricBlastLabel;
+        private System.Windows.Forms.Label interTokLabel;
         private System.Windows.Forms.PictureBox cricBlastPicture;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
     }

@@ -4,11 +4,140 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 using KeyAuth;
+using System.Diagnostics;
+using System.Net;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
     public partial class Welcome : UserControl
     {
+        public static api KeyAuthApp = new api(
+            name: "Tiktok.Games",
+            ownerid: "qdPVeuvG2s",
+            secret: "44d7d1eff612aa588fedfcff6768e97a8fa1ee541a9486a00e1ed7f418fbc244",
+            version: "1.0"
+        );
+
+        private void login_Click(object sender, System.EventArgs e)
+        {
+            KeyAuthApp.init();
+            autoUpdate();
+
+            Console.WriteLine(usernameTextBox.Text);
+            string key = usernameTextBox.Text;
+            Controls.Clear();
+
+            KeyAuthApp.license(key);
+
+
+            if (!KeyAuthApp.response.success)
+            {
+                new MessageBoxOk(Selected.ErrorMark, KeyAuthApp.response.message).ShowDialog();
+                Console.WriteLine("\nStatus: " + KeyAuthApp.response.message);
+                return;
+            }
+
+
+            Console.WriteLine("\nLogged In!"); // at this point, the client has been authenticated. Put the code you want to run after here
+            var threadParameters1 = new ThreadStart(() =>
+            {
+                Invoke((Action)(() => {
+                    new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
+                    Controls.Add(new Home());
+                }));
+            });
+
+            var thread1 = new Thread(threadParameters1);
+            thread1.Start();
+
+        }
+
+        private void forgotPassword_Click(object sender, System.EventArgs e)
+        {
+            switch (_admin)
+            {
+                case true:
+                    usernameTextBox.Text = "admin";
+                    passwordTextBox.Text = "admin";
+                    return;
+                default:
+                    new Recover().ShowDialog();
+                    usernameTextBox.Text = Selected.UserDetails[2];
+                    passwordTextBox.Text = Selected.UserDetails[3];
+                    break;
+            }
+        }
+
+        static void autoUpdate()
+        {
+            if (KeyAuthApp.response.message == "invalidver")
+            {
+                if (!string.IsNullOrEmpty(KeyAuthApp.app_data.downloadLink))
+                {
+                    Console.WriteLine("\n Auto update avaliable!");
+                    Console.WriteLine(" Choose how you'd like to auto update:");
+                    Console.WriteLine(" [1] Open file in browser");
+                    Console.WriteLine(" [2] Download file directly");
+                    int choice = int.Parse(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Process.Start(KeyAuthApp.app_data.downloadLink);
+                            Environment.Exit(0);
+                            break;
+                        case 2:
+                            Console.WriteLine(" Downloading file directly..");
+                            Console.WriteLine(" New file will be opened shortly..");
+
+                            WebClient webClient = new WebClient();
+                            string destFile = Application.ExecutablePath;
+
+                            string rand = random_string();
+
+                            destFile = destFile.Replace(".exe", $"-{rand}.exe");
+                            webClient.DownloadFile(KeyAuthApp.app_data.downloadLink, destFile);
+
+                            Process.Start(destFile);
+                            Process.Start(new ProcessStartInfo()
+                            {
+                                Arguments = "/C choice /C Y /N /D Y /T 3 & Del \"" + Application.ExecutablePath + "\"",
+                                WindowStyle = ProcessWindowStyle.Hidden,
+                                CreateNoWindow = true,
+                                FileName = "cmd.exe"
+                            });
+                            Environment.Exit(0);
+
+                            break;
+                        default:
+                            Console.WriteLine(" Invalid selection, terminating program..");
+                            Thread.Sleep(1500);
+                            Environment.Exit(0);
+                            break;
+                    }
+                }
+                Console.WriteLine("\n Status: Version of this program does not match the one online. Furthermore, the download link online isn't set. You will need to manually obtain the download link from the developer.");
+                Thread.Sleep(2500);
+                Environment.Exit(0);
+            }
+        }
+
+        static string random_string()
+        {
+            string str = null;
+
+            Random random = new Random();
+            for (int i = 0; i < 5; i++)
+            {
+                str += Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65))).ToString();
+            }
+            return str;
+        }
+
+
+
+
+
+
         protected override CreateParams CreateParams
         {
             get
@@ -57,27 +186,6 @@ namespace CricBlast_GUI.UI.User_Controls
                     createAccountLabel.Visible = false;
                     label5.Visible = false;
                     usernameTextBox.Focus();
-                    break;
-            }
-        }
-
-        private void login_Click(object sender, System.EventArgs e)
-        {
-            //KeyAuthApp.license(key); 
-        }
-
-        private void forgotPassword_Click(object sender, System.EventArgs e)
-        {
-            switch (_admin)
-            {
-                case true:
-                    usernameTextBox.Text = "admin";
-                    passwordTextBox.Text = "admin";
-                    return;
-                default:
-                    new Recover().ShowDialog();
-                    usernameTextBox.Text = Selected.UserDetails[2];
-                    passwordTextBox.Text = Selected.UserDetails[3];
                     break;
             }
         }

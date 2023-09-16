@@ -70,10 +70,10 @@ namespace CricBlast_GUI.UI
             this.exitButton.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.exitButton.ForeColor = System.Drawing.Color.White;
             this.exitButton.HoverState.Parent = this.exitButton;
-            this.exitButton.Location = new System.Drawing.Point(333, 176);
+            this.exitButton.Location = new System.Drawing.Point(273, 176);
             this.exitButton.Name = "exitButton";
             this.exitButton.ShadowDecoration.Parent = this.exitButton;
-            this.exitButton.Size = new System.Drawing.Size(110, 45);
+            this.exitButton.Size = new System.Drawing.Size(136, 45);
             this.exitButton.TabIndex = 44;
             this.exitButton.Text = "Yes";
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
@@ -93,12 +93,12 @@ namespace CricBlast_GUI.UI
             this.contributionsButton.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.contributionsButton.ForeColor = System.Drawing.Color.White;
             this.contributionsButton.HoverState.Parent = this.contributionsButton;
-            this.contributionsButton.Location = new System.Drawing.Point(69, 176);
+            this.contributionsButton.Location = new System.Drawing.Point(111, 176);
             this.contributionsButton.Name = "contributionsButton";
             this.contributionsButton.ShadowDecoration.Parent = this.contributionsButton;
-            this.contributionsButton.Size = new System.Drawing.Size(232, 45);
+            this.contributionsButton.Size = new System.Drawing.Size(136, 45);
             this.contributionsButton.TabIndex = 50;
-            this.contributionsButton.Text = "View Project Info";
+            this.contributionsButton.Text = "No";
             this.contributionsButton.Click += new System.EventHandler(this.contributionsButton_Click);
             // 
             // BorderlessForm

@@ -1,4 +1,7 @@
 ﻿
+using CricBlast_GUI.Database;
+using System;
+
 namespace CricBlast_GUI.UI.User_Controls
 {
     partial class Home
@@ -150,9 +153,9 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.usernameLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.usernameLabel.Location = new System.Drawing.Point(119, 563);
+            this.usernameLabel.Location = new System.Drawing.Point(119, 562);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(151, 32);
+            this.usernameLabel.Size = new System.Drawing.Size(216, 34);
             this.usernameLabel.TabIndex = 6;
             this.usernameLabel.Text = "Username";
             // 
@@ -229,7 +232,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.playerStats.Text = "Player Stats";
             this.playerStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.playerStats.TextOffset = new System.Drawing.Point(2, 0);
-            this.playerStats.Click += new System.EventHandler(this.playerStats_Click);
             // 
             // playMatch
             // 
@@ -305,19 +307,23 @@ namespace CricBlast_GUI.UI.User_Controls
             this.myTeam.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
             this.myTeam.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.myTeam.ForeColor = System.Drawing.Color.White;
+            this.myTeam.HoverState.BorderColor = System.Drawing.Color.Transparent;
+            this.myTeam.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
+            this.myTeam.HoverState.ForeColor = System.Drawing.Color.White;
             this.myTeam.HoverState.Parent = this.myTeam;
             this.myTeam.Image = global::CricBlast_GUI.Properties.Resources.Icon_MyTeam;
             this.myTeam.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.myTeam.ImageOffset = new System.Drawing.Point(3, 1);
             this.myTeam.Location = new System.Drawing.Point(45, 132);
             this.myTeam.Name = "myTeam";
+            this.myTeam.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
+            this.myTeam.PressedDepth = 0;
             this.myTeam.ShadowDecoration.Parent = this.myTeam;
             this.myTeam.Size = new System.Drawing.Size(198, 45);
             this.myTeam.TabIndex = 1;
             this.myTeam.Text = "My Team";
             this.myTeam.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.myTeam.TextOffset = new System.Drawing.Point(2, 0);
-            this.myTeam.Click += new System.EventHandler(this.myTeam_Click);
             // 
             // logout
             // 

@@ -11,27 +11,32 @@ namespace CricBlast_GUI.UI.User_Controls
         public int SelectedMenu = 1;
         private bool _isAvailable = true;
 
-        public Home()
+        /* InterTok Vars: */
+        /*                */
+        public string Game, Username;
+        /*                */
+        /* -------------- */
+
+        public Home(string _Game, string _Username)
         {
+            this.Game = _Game;
+            this.Username = _Username;
             InitializeComponent();
+
+            UpdateHomeLabels();
         }
+
+        private void UpdateHomeLabels()
+        {
+            Console.WriteLine("\n\n" + Username + "\n\n");
+            this.usernameLabel.Text = Username;
+        }
+
 
         private void Home_Load(object sender, EventArgs e)
         {
             usernameLabel.Text = Selected.UserDetails[1];
             userPhoto.Image = Selected.UserImage;
-            new ChooseTeam().ShowDialog();
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new MyTeam());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
         }
 
         private void myTeam_Click(object sender, EventArgs e)
@@ -44,23 +49,6 @@ namespace CricBlast_GUI.UI.User_Controls
                 Invoke((Action)(() =>
                 {
                     homeSubPanel.Controls.Add(value: new MyTeam());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
-        }
-
-        private void playerStats_Click(object sender, EventArgs e)
-        {
-            if (SelectedMenu == 2) return;
-            ChangeButtonColor(playerStats, 2);
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new PlayerStats());
                     loading.Visible = false;
                 }));
             });
@@ -87,19 +75,7 @@ namespace CricBlast_GUI.UI.User_Controls
 
         private void addPlayers_Click(object sender, EventArgs e)
         {
-            if (SelectedMenu == 4) return;
-            ChangeButtonColor(addPlayers, 4);
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new AddPlayer());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+            Console.WriteLine("\n\n\n" + "Trying to check TikTok User presence. " + "\n\n\n");
         }
 
         public void playMatch_Click(object sender, EventArgs e)
@@ -157,7 +133,6 @@ namespace CricBlast_GUI.UI.User_Controls
             Selected.OpponentTeam = 0;
             Selected.UserTeamLogo = null;
             Array.Clear(Selected.UserTeamStats, 0, Selected.UserTeamStats.Length);
-            Array.Clear(Selected.UserTeamPlayerStats, 0, Selected.UserTeamPlayerStats.Length);
             Selected.Player = 0;
             Selected.Format = 0;
         }
@@ -172,9 +147,6 @@ namespace CricBlast_GUI.UI.User_Controls
             {
                 case 1:
                     myTeam.FillColor = Color.Transparent;
-                    break;
-                case 2:
-                    playerStats.FillColor = Color.Transparent;
                     break;
                 case 3:
                     customizeTeam.FillColor = Color.Transparent;

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using KeyAuth;
 using System.Diagnostics;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -30,6 +31,7 @@ namespace CricBlast_GUI.UI.User_Controls
             KeyAuthApp.license(key);
 
 
+
             if (!KeyAuthApp.response.success)
             {
                 new MessageBoxOk(Selected.ErrorMark, KeyAuthApp.response.message).ShowDialog();
@@ -37,18 +39,29 @@ namespace CricBlast_GUI.UI.User_Controls
                 return;
             }
 
+            string Username = passwordTextBox.Text = usernameTextBox.Text.Split('-')[1];
 
-            Console.WriteLine("\nLogged In!"); // at this point, the client has been authenticated. Put the code you want to run after here
-            var threadParameters1 = new ThreadStart(() =>
+            var threadParameters = new ThreadStart(() =>
             {
-                Invoke((Action)(() => {
+                Invoke((Action)(() =>
+                {
                     new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
-                    Controls.Add(new Home());
+                    new ChooseTeam(Username).ShowDialog();
                 }));
             });
 
-            var thread1 = new Thread(threadParameters1);
-            thread1.Start();
+            var thread = new Thread(threadParameters);
+            thread.Start();
+
+            //Console.WriteLine("\nLogged In!"); // at this point, the client has been authenticated. Put the code you want to run after here
+            //var threadParameters1 = new ThreadStart(() =>
+            //{
+            //    Invoke((Action)(() => {
+            //        new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
+            //        Controls.Add(new Home());
+            //    }));
+            //});
+
 
         }
 

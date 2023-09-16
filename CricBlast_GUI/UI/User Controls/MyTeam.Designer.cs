@@ -77,7 +77,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.changeTeam.Size = new System.Drawing.Size(180, 45);
             this.changeTeam.TabIndex = 50;
             this.changeTeam.Text = "Change Team";
-            this.changeTeam.Click += new System.EventHandler(this.changeTeam_Click);
             // 
             // label9
             // 

@@ -13,12 +13,6 @@ namespace CricBlast_GUI.UI.User_Controls
             SetStats();
         }
 
-        private void changeTeam_Click(object sender, EventArgs e)
-        {
-            new ChooseTeam().ShowDialog();
-            SetStats();
-        }
-
         private void SetStats()
         {
             teamLogo.Image = UserTeamLogo;

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using static Teams.Team;
+
 
 namespace CricBlast_GUI.UI
 {
@@ -20,7 +22,16 @@ namespace CricBlast_GUI.UI
         {
             InitializeComponent();
             Icon = Properties.Resources.CricBlast;
+            
         }
+
+        public ChooseTeam(List<string> optionFields)
+        {
+            this.optionFields = optionFields;
+            InitializeComponent();
+            Icon = Properties.Resources.CricBlast;
+        }
+
 
         private void ChooseTeam_Load(object sender, EventArgs e)
         {

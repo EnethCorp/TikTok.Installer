@@ -6,6 +6,10 @@ using System.Windows.Forms;
 using KeyAuth;
 using System.Diagnostics;
 using System.Net;
+using System.Collections.Generic;
+using System.Linq;
+
+
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -20,6 +24,8 @@ namespace CricBlast_GUI.UI.User_Controls
 
         private void login_Click(object sender, System.EventArgs e)
         {
+
+
             KeyAuthApp.init();
             autoUpdate();
 
@@ -43,7 +49,10 @@ namespace CricBlast_GUI.UI.User_Controls
             {
                 Invoke((Action)(() => {
                     new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
-                    Controls.Add(new Home());
+
+                    string[] optionFields = KeyAuthApp.getvar("AvailableGames").Split(',');
+                    ChooseTeam chooseGameBox = new ChooseTeam(optionFields.ToList());
+                    chooseGameBox.ShowDialog();
                 }));
             });
 

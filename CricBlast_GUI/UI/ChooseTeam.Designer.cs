@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace CricBlast_GUI.UI
 {
     partial class ChooseTeam
@@ -7,6 +10,7 @@ namespace CricBlast_GUI.UI
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        public List<string> optionFields;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -54,11 +58,12 @@ namespace CricBlast_GUI.UI
             this.teamComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.teamComboBox.HoverState.Parent = this.teamComboBox;
             this.teamComboBox.ItemHeight = 30;
-            this.teamComboBox.Items.AddRange(new object[] {
+            /*this.teamComboBox.Items.AddRange(new object[] {
             "Select...",
             "Plinko",
             "Territory War",
-            "Pinball"});
+            "Pinball"});*/
+            this.teamComboBox.Items.AddRange(optionFields.ToArray());
             this.teamComboBox.ItemsAppearance.Parent = this.teamComboBox;
             this.teamComboBox.Location = new System.Drawing.Point(90, 90);
             this.teamComboBox.Name = "teamComboBox";

@@ -497,7 +497,6 @@ namespace KeyAuth
             {
                 ["type"] = "license",
                 ["key"] = key,
-                ["hwid"] = hwid,
                 ["sessionid"] = sessionid,
                 ["name"] = name,
                 ["ownerid"] = ownerid

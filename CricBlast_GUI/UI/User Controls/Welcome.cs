@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -21,7 +23,8 @@ namespace CricBlast_GUI.UI.User_Controls
         );
 
         string key_path = "C:\\key";
-        string key;
+        public static string key;
+        public static List<string> GameList;
 
         private void login_Click(object sender, System.EventArgs e)
         {
@@ -67,7 +70,10 @@ namespace CricBlast_GUI.UI.User_Controls
                 Invoke((Action)(() =>
                 {
                     new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
-                    new ChooseTeam(Username).ShowDialog();
+                    GameList = KeyAuthApp.getvar("AvailableGames").Split(',').ToList();
+                    Console.WriteLine(KeyAuthApp.getvar("AvailableGames"));
+                    GameList.Insert(0, "Select Game...");
+                    new ChooseTeam(Username, GameList).ShowDialog();
                 }));
             });
 

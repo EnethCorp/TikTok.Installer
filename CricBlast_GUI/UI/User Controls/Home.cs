@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -96,7 +97,7 @@ namespace CricBlast_GUI.UI.User_Controls
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            new ChooseTeam(Username).ShowDialog();
+            new ChooseTeam(Username, Welcome.GameList).ShowDialog();
         }
 
         private void logout_Click(object sender, EventArgs e)
@@ -122,6 +123,7 @@ namespace CricBlast_GUI.UI.User_Controls
             System.Threading.Thread.Sleep(1000);
             ChangeLabelText(StateLabel, "Live");
             ChangeImageColor(OnlineIcon, Color.Yellow);
+            Process.Start("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\TikTok LIVE Studio");
             ChangeButtonState(ConnectButton, true);
         }
 
@@ -130,7 +132,8 @@ namespace CricBlast_GUI.UI.User_Controls
             ChangeButtonState(ConnectButton, false);
             System.Threading.Thread.Sleep(1000);
             ChangeLabelText(StateLabel, "Connected");
-            ChangeButtonState(StartGameButton, true);
+            Thread tiktokServerThread = new Thread(() => startTikTokApiLocalServer(this.Username, Welcome.key));
+            tiktokServerThread.Start();
         }
 
         private void StartGame_Click(object sender, EventArgs e)
@@ -140,6 +143,68 @@ namespace CricBlast_GUI.UI.User_Controls
             System.Diagnostics.Process.Start(GamePath);
             ChangeImageColor(OnlineIcon, Color.Green);
             ChangeButtonState(StartGameButton, false);
+        }
+
+
+
+        private void startTikTokApiLocalServer(string username, string key)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "python.exe"; // Replace with the path to your executable
+            process.StartInfo.Arguments = "C:\\Users\\jakob\\OneDrive\\Dokumente\\GitHub\\Tiktok.Installer\\tiktokLiveApi.py seandoesmagic KEYAUTH-admin, " + Game; // Replace with any command-line arguments
+
+            process.Start();
+
+
+            Thread checkForSuccess = new Thread(() =>
+            {
+                string localLowAppdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+
+
+                string successFile = Path.Combine(localLowAppdata, "InterTok", "TikTok." + Game, "success");
+                Console.WriteLine("Success file: " + successFile);
+                while (true)
+                {
+                    if (File.Exists(successFile))
+                    {
+                        string programStatus = File.ReadAllText(successFile);
+                        Console.WriteLine("file content: " + programStatus);
+                        if (programStatus == "positive")
+                        {
+                            Console.WriteLine("POSITIVE:: "+  programStatus);
+                            BeginInvoke((Action)(() => {
+                                ChangeLabelText(StateLabel, "Connected");
+                                ChangeButtonState(StartGameButton, true);
+                            }));
+                        }
+                        else
+                        {
+                            BeginInvoke((Action)(() => {
+                                new MessageBoxOk(Selected.ErrorMark, programStatus, statusError: true).ShowDialog();
+                            }));
+
+                        }
+                        File.Delete(successFile);
+                        break;
+                    }
+                }
+
+
+            });
+
+            checkForSuccess.Start();
+
+            process.WaitForExit();
+            Thread.Sleep(1000);
+            int returnValue = process.ExitCode;
+            Console.WriteLine($"Api exited with return value: {returnValue}");
+
+
+            BeginInvoke((Action)(() => {
+                ChangeLabelText(StateLabel, "Live");
+                ChangeButtonState(ConnectButton, true);
+                ChangeButtonState(StartGameButton, false);
+            }));
         }
     }
 }

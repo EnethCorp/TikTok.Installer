@@ -56,9 +56,8 @@ namespace CricBlast_GUI.UI
             this.teamComboBox.ItemHeight = 30;
             this.teamComboBox.Items.AddRange(new object[] {
             "Select...",
-            "Plinko",
-            "Territory War",
-            "Pinball"});
+            "Test",
+            "Test2"});
             this.teamComboBox.ItemsAppearance.Parent = this.teamComboBox;
             this.teamComboBox.Location = new System.Drawing.Point(90, 90);
             this.teamComboBox.Name = "teamComboBox";

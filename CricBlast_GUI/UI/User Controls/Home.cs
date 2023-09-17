@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using System.Diagnostics;
+using System.Runtime.Remoting.Contexts;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -11,118 +14,91 @@ namespace CricBlast_GUI.UI.User_Controls
         public int SelectedMenu = 1;
         private bool _isAvailable = true;
 
-        public Home()
+        /* InterTok Vars: */
+        /*                */
+        public string Game, Username;
+        private string LocalLowAppdata, InterTokPath, GamePath;
+        /*                */
+        /* -------------- */
+
+        public Home(string _Game, string _Username)
         {
+            this.Game = _Game;
+            this.Username = _Username;
             InitializeComponent();
+
+            UpdateHomeLabels();
+            ChangeButtonState(ConnectButton, false);
+            ChangeButtonState(StartGameButton, false);
+<<<<<<< Updated upstream
+            //GetFilePaths();
+=======
+            GetFilePaths();
+>>>>>>> Stashed changes
         }
 
-        private void Home_Load(object sender, EventArgs e)
+        /* METHODS */
+        private void UpdateHomeLabels()
         {
-            usernameLabel.Text = Selected.UserDetails[1];
-            userPhoto.Image = Selected.UserImage;
-            new ChooseTeam().ShowDialog();
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new MyTeam());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+            Console.WriteLine("\n\n" + Username + "\n\n");
+            this.usernameLabel.Text = Username;
         }
 
-        private void myTeam_Click(object sender, EventArgs e)
+        private void ChangeButtonState(Guna2Button button, bool state)
         {
-            if (SelectedMenu == 1) return;
-            ChangeButtonColor(myTeam, 1);
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new MyTeam());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+            button.Enabled = state; // Set the button as not clickable
         }
-
-        private void playerStats_Click(object sender, EventArgs e)
+        private void ChangeButtonColor(Guna2Button button, int changeMenu)
         {
-            if (SelectedMenu == 2) return;
-            ChangeButtonColor(playerStats, 2);
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new PlayerStats());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+            button.FillColor = Color.FromArgb(246, 161, 47);
         }
-
-        private void customizeTeam_Click(object sender, EventArgs e)
+        private void ChangeImageColor(Guna2CirclePictureBox picture, Color color)
         {
-            if (SelectedMenu == 3) return;
-            ChangeButtonColor(customizeTeam, 3);
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new CustomizeTeam());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+            picture.FillColor = color;
         }
-
-        private void addPlayers_Click(object sender, EventArgs e)
+        private void ChangeLabelText(Label label, string _Text)
         {
-            if (SelectedMenu == 4) return;
-            ChangeButtonColor(addPlayers, 4);
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    homeSubPanel.Controls.Add(value: new AddPlayer());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+            label.Text = _Text;
         }
 
-        public void playMatch_Click(object sender, EventArgs e)
+        private void GetFilePaths()
         {
-            if (SelectedMenu == 5) return;
-            ChangeButtonColor(playMatch, 5);
+            LocalLowAppdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+            Console.Write("\n\n" + LocalLowAppdata + "\n\n");
+            InterTokPath = Path.Combine(LocalLowAppdata, "InterTok\\TikTok.") + Game + "\\";
+            Console.Write("\n\n" + InterTokPath + "\n\n");
+            GamePath = Path.Combine(InterTokPath, "TikTok." + Game + ".exe");
+            Console.Write("\n\n" + GamePath + "\n\n");
 
-            var threadParameters = new ThreadStart(() =>
+            if (!File.Exists(GamePath))
             {
-                Invoke((Action)(() =>
+                var threadParameters = new ThreadStart(() =>
                 {
-                    homeSubPanel.Controls.Add(value: new PlayMatch());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+                    Invoke((Action)(() =>
+                    {
+                        new MessageBoxDownload("Game is not installed.").ShowDialog();
+                        new ChooseTeam(Username).ShowDialog();
+                    }));
+                });
+
+                var thread = new Thread(threadParameters);
+                thread.Start();
+            }
         }
+
+
+
+        /* BUTTON CLICKS */
+        //private void Home_Load(object sender, EventArgs e)
+        //{
+        //    usernameLabel.Text = Selected.UserDetails[1];
+        //    userPhoto.Image = Selected.UserImage;
+        //}
+
 
         private void tournament_Click(object sender, EventArgs e)
         {
             if (SelectedMenu == 6) return;
-            ChangeButtonColor(tournament, 6);
 
             var threadParameters = new ThreadStart(() =>
             {
@@ -144,86 +120,128 @@ namespace CricBlast_GUI.UI.User_Controls
             new MessageBoxYesNo(1, "Are you sure you want to log out?").ShowDialog();
             if (!Selected.MessageBoxYesOrNo) return;
 
-            clearUserDetails();
+            //clearUserDetails();
             Controls.Clear();
             Controls.Add(new Welcome { welcomeLabel = { Text = "Welcome Back!" } });
         }
 
-        private void clearUserDetails()
-        {
-            Array.Clear(Selected.UserDetails, 0, Selected.UserDetails.Length);
-            Selected.UserImage = null;
-            Selected.UserTeam = 0;
-            Selected.OpponentTeam = 0;
-            Selected.UserTeamLogo = null;
-            Array.Clear(Selected.UserTeamStats, 0, Selected.UserTeamStats.Length);
-            Array.Clear(Selected.UserTeamPlayerStats, 0, Selected.UserTeamPlayerStats.Length);
-            Selected.Player = 0;
-            Selected.Format = 0;
-        }
-
-        private void ChangeButtonColor(Guna2Button button, int changeMenu)
-        {
-            button.FillColor = Color.FromArgb(246, 161, 47);
-            homeSubPanel.Controls.Clear();
-            loading.Visible = true;
-
-            switch (SelectedMenu)
-            {
-                case 1:
-                    myTeam.FillColor = Color.Transparent;
-                    break;
-                case 2:
-                    playerStats.FillColor = Color.Transparent;
-                    break;
-                case 3:
-                    customizeTeam.FillColor = Color.Transparent;
-                    break;
-                case 4:
-                    addPlayers.FillColor = Color.Transparent;
-                    break;
-                case 5:
-                    playMatch.FillColor = Color.Transparent;
-                    break;
-                case 6:
-                    tournament.FillColor = Color.Transparent;
-                    break;
-            }
-
-            SelectedMenu = changeMenu;
-        }
 
         private void userPhoto_Click(object sender, EventArgs e)
         {
-            new Profile().ShowDialog();
-            usernameLabel.Text = Selected.UserDetails[1];
-            userPhoto.Image = Selected.UserImage;
+            //usernameLabel.Text = Selected.UserDetails[1];
+            //userPhoto.Image = Selected.UserImage;
         }
 
-        private void availability_Click(object sender, EventArgs e)
+        private void GoLive_Click(object sender, EventArgs e)
         {
-            if (_isAvailable)
+            ChangeButtonState(GoLiveButton, false);
+            System.Threading.Thread.Sleep(1000);
+            ChangeLabelText(StateLabel, "Live");
+            ChangeImageColor(OnlineIcon, Color.Yellow);
+            ChangeButtonState(ConnectButton, true);
+<<<<<<< Updated upstream
+
+
+            Process.Start("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\TikTok LIVE Studio");
+
+
+        }
+
+        private void Connect_Click(object sender, EventArgs e)
+        {
+            ChangeButtonState(ConnectButton, false);
+            System.Threading.Thread.Sleep(1000);
+            ChangeLabelText(StateLabel, "Connecting");
+
+
+            Thread tiktokServerThread = new Thread(() => startTikTokApiLocalServer(this.Username, Welcome.key));
+            tiktokServerThread.Start();
+        }
+
+        private void startTikTokApiLocalServer(string username, string key)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "python.exe"; // Replace with the path to your executable
+            process.StartInfo.Arguments = "C:\\Users\\jakob\\OneDrive\\Dokumente\\GitHub\\Tiktok.Installer\\tiktokLiveApi.py seandoesmagic KEYAUTH-admin, " + Game; // Replace with any command-line arguments
+
+            process.Start();
+
+
+            Thread checkForSuccess = new Thread(() =>
             {
-                availability.Text = "Offline";
-                availabilityIcon.FillColor = Color.Gray;
-                _isAvailable = false;
-            }
-            else
-            {
-                availability.Text = "Online";
-                availabilityIcon.FillColor = Color.LimeGreen;
-                _isAvailable = true;
-            }
+                string localLowAppdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+
+
+                string successFile = Path.Combine(localLowAppdata, "InterTok", "TikTok." + Game, "success");
+                Console.WriteLine("Success file: " + successFile);
+                while (true)
+                {
+                    if (File.Exists(successFile))
+                    {
+                        string programStatus = File.ReadAllText(successFile);
+                        Console.WriteLine("file content: " + programStatus);
+                        if(programStatus == "positive")
+                        {
+                            BeginInvoke((Action)(() => {
+                                ChangeLabelText(StateLabel, "Connected");
+                                ChangeButtonState(StartGameButton, true);
+                            }));
+                        }
+                        else
+                        {
+                            BeginInvoke((Action)(() => {
+                                new MessageBoxOk(Selected.ErrorMark, programStatus, statusError: true).ShowDialog();
+                            }));
+                            
+                        }
+                        File.Delete(successFile);
+                        break;
+                    }
+                }
+                
+                
+            });
+
+            checkForSuccess.Start();
+
+            process.WaitForExit();
+            int returnValue = process.ExitCode;
+            Console.WriteLine($"Api exited with return value: {returnValue}");
+
+            
+            
+            BeginInvoke((Action)(() => {
+                    ChangeLabelText(StateLabel, "Live");
+                    ChangeButtonState(ConnectButton, true);
+                ChangeButtonState(StartGameButton, false);
+            }));
+                
+            
+
+
         }
 
-        private void logoPicture_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Raofin/CricBlast");
+        
+
+
+=======
         }
 
-        private void cricBlastLabel_Click(object sender, EventArgs e)
+        private void Connect_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Raofin/CricBlast");
+            ChangeButtonState(ConnectButton, false);
+            System.Threading.Thread.Sleep(1000);
+            ChangeLabelText(StateLabel, "Connected");
+            ChangeButtonState(StartGameButton, true);
+        }
+
+>>>>>>> Stashed changes
+        private void StartGame_Click(object sender, EventArgs e)
+        {
+            System.Threading.Thread.Sleep(300);
+            ChangeLabelText(StateLabel, "Running");
+            ChangeImageColor(OnlineIcon, Color.Green);
+            ChangeButtonState(StartGameButton, false);
         }
     }
 }

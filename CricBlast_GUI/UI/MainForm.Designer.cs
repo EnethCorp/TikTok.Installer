@@ -36,7 +36,6 @@ namespace CricBlast_GUI.UI
             this.logo = new Guna.UI2.WinForms.Guna2PictureBox();
             this.getStarted = new Guna.UI2.WinForms.Guna2Button();
             this.mainPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.infoButton = new Guna.UI2.WinForms.Guna2Button();
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -134,29 +133,6 @@ namespace CricBlast_GUI.UI
             this.mainPanel.Size = new System.Drawing.Size(1280, 720);
             this.mainPanel.TabIndex = 0;
             // 
-            // infoButton
-            // 
-            this.infoButton.BackColor = System.Drawing.Color.Transparent;
-            this.infoButton.CheckedState.Parent = this.infoButton;
-            this.infoButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.infoButton.CustomImages.Parent = this.infoButton;
-            this.infoButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.infoButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.infoButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.infoButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.infoButton.DisabledState.Parent = this.infoButton;
-            this.infoButton.FillColor = System.Drawing.Color.Transparent;
-            this.infoButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.infoButton.ForeColor = System.Drawing.Color.White;
-            this.infoButton.HoverState.Parent = this.infoButton;
-            this.infoButton.Location = new System.Drawing.Point(1153, 0);
-            this.infoButton.Name = "infoButton";
-            this.infoButton.ShadowDecoration.Parent = this.infoButton;
-            this.infoButton.Size = new System.Drawing.Size(32, 29);
-            this.infoButton.TabIndex = 21;
-            this.infoButton.Text = "!";
-            this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
-            // 
             // DragControl
             // 
             this.DragControl.DockIndicatorTransparencyValue = 0.6D;
@@ -176,7 +152,6 @@ namespace CricBlast_GUI.UI
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(44)))), ((int)(((byte)(88)))));
             this.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Background;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.infoButton);
             this.Controls.Add(this.guna2ControlBox2);
             this.Controls.Add(this.closeBox);
             this.Controls.Add(this.mainPanel);
@@ -198,7 +173,6 @@ namespace CricBlast_GUI.UI
         public Guna.UI2.WinForms.Guna2Panel mainPanel;
         private Guna.UI2.WinForms.Guna2Button getStarted;
         private Guna.UI2.WinForms.Guna2PictureBox logo;
-        private Guna.UI2.WinForms.Guna2Button infoButton;
         private Guna.UI2.WinForms.Guna2DragControl DragControl;
         private Guna.UI2.WinForms.Guna2DragControl DragControl2;
 

@@ -4,6 +4,7 @@ import time
 from playwright.async_api import async_playwright
 import aiohttp
 import subprocess
+import traceback
 url = "https://videodownloader.so/download/pfp/tiktok?v="
 
 browser = None
@@ -23,18 +24,16 @@ async def init():
   print("event loop init: ", id(asyncio.get_event_loop()))
   
 
-async def downloadProfilePicture(url: str, username: str):  
+async def downloadProfilePicture(url: str, username: str, outputpath: str):  
     imgData = None
     print("started downloading: ", username)
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
-            imgData = await response.read()    
-    cwd = os.getcwd()
-    parent_directory = os.path.dirname(cwd)
-    print(parent_directory)
-    
-    file_path_input = os.path.join(os.path.join(parent_directory, "StreamingAssets"), f"{username}-input.png")
-    file_path = os.path.join(os.path.join(parent_directory, "StreamingAssets"), f"{username}.png")
+            imgData = await response.read()
+            
+   
+    file_path_input = os.path.join(outputpath, f"{username}-temp.png")
+    file_path = os.path.join(outputpath, f"{username}.png")
     
     with open(file_path_input, "wb") as f:
         f.write(imgData)

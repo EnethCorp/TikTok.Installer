@@ -29,7 +29,8 @@ async def handle_msg(reader: asyncio.StreamReader, writer: asyncio.StreamWriter,
         elif msg == "getEvent":
             addr, port = writer.get_extra_info("peername")
 
-    
+            print(events)
+
             foundValidEvent = False
             searchedEvents = deque()
             
@@ -76,7 +77,7 @@ async def handle_msg(reader: asyncio.StreamReader, writer: asyncio.StreamWriter,
     await writer.wait_closed()
 
 
-async def start_local_server(events: deque, downloadedPfp: list):
+async def start_local_server(events: deque, downloadedPfp: list, statusPath: str):
     print("started server")
     partial_callback_func = partial(handle_msg, events=events, downloadedPfp=downloadedPfp)
 

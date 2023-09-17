@@ -46,7 +46,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.logoPicture = new System.Windows.Forms.PictureBox();
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.loading = new System.Windows.Forms.Label();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.homeSubPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OnlineIcon)).BeginInit();
@@ -57,7 +57,10 @@ namespace CricBlast_GUI.UI.User_Controls
             // 
             this.homeSubPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(44)))), ((int)(((byte)(88)))));
             this.homeSubPanel.BackgroundImage = global::CricBlast_GUI.Properties.Resources.BackgroundHome;
+            this.homeSubPanel.Controls.Add(this.OnlineIcon);
             this.homeSubPanel.Controls.Add(this.logout);
+            this.homeSubPanel.Controls.Add(this.StateLabel);
+            this.homeSubPanel.Controls.Add(this.usernameLabel);
             this.homeSubPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.homeSubPanel.Location = new System.Drawing.Point(308, 0);
             this.homeSubPanel.Name = "homeSubPanel";
@@ -83,9 +86,7 @@ namespace CricBlast_GUI.UI.User_Controls
             // 
             this.menuPanel.BackColor = System.Drawing.Color.Transparent;
             this.menuPanel.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Home_Menu;
-            this.menuPanel.Controls.Add(this.OnlineIcon);
-            this.menuPanel.Controls.Add(this.StateLabel);
-            this.menuPanel.Controls.Add(this.usernameLabel);
+            this.menuPanel.Controls.Add(this.guna2Button1);
             this.menuPanel.Controls.Add(this.ConnectButton);
             this.menuPanel.Controls.Add(this.StartGameButton);
             this.menuPanel.Controls.Add(this.GoLiveButton);
@@ -102,7 +103,7 @@ namespace CricBlast_GUI.UI.User_Controls
             // 
             this.OnlineIcon.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.OnlineIcon.ImageRotate = 0F;
-            this.OnlineIcon.Location = new System.Drawing.Point(59, 650);
+            this.OnlineIcon.Location = new System.Drawing.Point(45, 100);
             this.OnlineIcon.Name = "OnlineIcon";
             this.OnlineIcon.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.OnlineIcon.ShadowDecoration.Parent = this.OnlineIcon;
@@ -117,7 +118,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.StateLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.StateLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StateLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.StateLabel.Location = new System.Drawing.Point(73, 644);
+            this.StateLabel.Location = new System.Drawing.Point(59, 94);
             this.StateLabel.Name = "StateLabel";
             this.StateLabel.Size = new System.Drawing.Size(71, 25);
             this.StateLabel.TabIndex = 6;
@@ -129,7 +130,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.usernameLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.usernameLabel.Location = new System.Drawing.Point(53, 610);
+            this.usernameLabel.Location = new System.Drawing.Point(39, 60);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(216, 34);
             this.usernameLabel.TabIndex = 6;
@@ -259,17 +260,33 @@ namespace CricBlast_GUI.UI.User_Controls
             this.DragControl2.TargetControl = this.homeSubPanel;
             this.DragControl2.TransparentWhileDrag = false;
             // 
-            // loading
+            // guna2Button1
             // 
-            this.loading.AutoSize = true;
-            this.loading.BackColor = System.Drawing.Color.Transparent;
-            this.loading.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Bold);
-            this.loading.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.loading.Location = new System.Drawing.Point(696, 337);
-            this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(176, 46);
-            this.loading.TabIndex = 19;
-            this.loading.Text = "Loading...";
+            this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.BorderRadius = 10;
+            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
+            this.guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.DisabledState.Parent = this.guna2Button1;
+            this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.HoverState.Parent = this.guna2Button1;
+            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button1.ImageOffset = new System.Drawing.Point(3, 1);
+            this.guna2Button1.Location = new System.Drawing.Point(45, 620);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
+            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
+            this.guna2Button1.Size = new System.Drawing.Size(215, 44);
+            this.guna2Button1.TabIndex = 5;
+            this.guna2Button1.Text = "Change Game";
+            this.guna2Button1.TextOffset = new System.Drawing.Point(2, 0);
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // Home
             // 
@@ -277,7 +294,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(44)))), ((int)(((byte)(88)))));
             this.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Background;
-            this.Controls.Add(this.loading);
             this.Controls.Add(this.homeSubPanel);
             this.Controls.Add(this.menuPanel);
             this.DoubleBuffered = true;
@@ -290,7 +306,6 @@ namespace CricBlast_GUI.UI.User_Controls
             ((System.ComponentModel.ISupportInitialize)(this.OnlineIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -307,8 +322,8 @@ namespace CricBlast_GUI.UI.User_Controls
         private System.Windows.Forms.Label logout;
         private Guna.UI2.WinForms.Guna2DragControl DragControl;
         private Guna.UI2.WinForms.Guna2DragControl DragControl2;
-        private System.Windows.Forms.Label loading;
         private Guna.UI2.WinForms.Guna2Button ConnectButton;
         private Guna.UI2.WinForms.Guna2CirclePictureBox userPhoto;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

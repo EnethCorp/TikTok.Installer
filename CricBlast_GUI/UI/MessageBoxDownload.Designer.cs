@@ -35,8 +35,9 @@ namespace CricBlast_GUI.UI
             this.yes = new Guna.UI2.WinForms.Guna2Button();
             this.messageMark = new Guna.UI2.WinForms.Guna2PictureBox();
             this.cricBlastPicture = new System.Windows.Forms.PictureBox();
-            this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.cricBlastLabel = new System.Windows.Forms.Label();
+            this.downloadBar = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.downloadPercentage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.messageMark)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cricBlastPicture)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,7 @@ namespace CricBlast_GUI.UI
             this.message.BackColor = System.Drawing.Color.Transparent;
             this.message.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.message.ForeColor = System.Drawing.Color.White;
-            this.message.Location = new System.Drawing.Point(146, 56);
+            this.message.Location = new System.Drawing.Point(146, 33);
             this.message.Name = "message";
             this.message.Size = new System.Drawing.Size(322, 105);
             this.message.TabIndex = 32;
@@ -74,19 +75,19 @@ namespace CricBlast_GUI.UI
             this.yes.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.yes.ForeColor = System.Drawing.Color.White;
             this.yes.HoverState.Parent = this.yes;
-            this.yes.Location = new System.Drawing.Point(152, 164);
+            this.yes.Location = new System.Drawing.Point(38, 141);
             this.yes.Name = "yes";
             this.yes.ShadowDecoration.Parent = this.yes;
             this.yes.Size = new System.Drawing.Size(223, 45);
             this.yes.TabIndex = 1;
             this.yes.Text = "Install Game";
-            this.yes.Click += new System.EventHandler(this.yes_Click);
+            this.yes.Click += new System.EventHandler(this.downloadButton_Click);
             // 
             // messageMark
             // 
             this.messageMark.Image = global::CricBlast_GUI.Properties.Resources.Warning_Mark;
             this.messageMark.ImageRotate = 0F;
-            this.messageMark.Location = new System.Drawing.Point(43, 68);
+            this.messageMark.Location = new System.Drawing.Point(38, 44);
             this.messageMark.Name = "messageMark";
             this.messageMark.ShadowDecoration.Parent = this.messageMark;
             this.messageMark.Size = new System.Drawing.Size(80, 80);
@@ -105,21 +106,6 @@ namespace CricBlast_GUI.UI
             this.cricBlastPicture.TabIndex = 41;
             this.cricBlastPicture.TabStop = false;
             // 
-            // guna2ControlBox1
-            // 
-            this.guna2ControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2ControlBox1.Animated = true;
-            this.guna2ControlBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ControlBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2ControlBox1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2ControlBox1.HoverState.Parent = this.guna2ControlBox1;
-            this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(474, 0);
-            this.guna2ControlBox1.Name = "guna2ControlBox1";
-            this.guna2ControlBox1.ShadowDecoration.Parent = this.guna2ControlBox1;
-            this.guna2ControlBox1.Size = new System.Drawing.Size(45, 29);
-            this.guna2ControlBox1.TabIndex = 43;
-            // 
             // cricBlastLabel
             // 
             this.cricBlastLabel.AutoSize = true;
@@ -128,9 +114,36 @@ namespace CricBlast_GUI.UI
             this.cricBlastLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cricBlastLabel.Location = new System.Drawing.Point(34, 10);
             this.cricBlastLabel.Name = "cricBlastLabel";
-            this.cricBlastLabel.Size = new System.Drawing.Size(76, 21);
+            this.cricBlastLabel.Size = new System.Drawing.Size(73, 21);
             this.cricBlastLabel.TabIndex = 44;
-            this.cricBlastLabel.Text = "CricBlast";
+            this.cricBlastLabel.Text = "InterTok";
+            this.cricBlastLabel.Click += new System.EventHandler(this.downloadButton_Click);
+            // 
+            // downloadBar
+            // 
+            this.downloadBar.Location = new System.Drawing.Point(38, 192);
+            this.downloadBar.Name = "downloadBar";
+            this.downloadBar.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.downloadBar.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.downloadBar.ShadowDecoration.Parent = this.downloadBar;
+            this.downloadBar.Size = new System.Drawing.Size(430, 39);
+            this.downloadBar.TabIndex = 46;
+            this.downloadBar.Text = "guna2ProgressBar1";
+            this.downloadBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // downloadPercentage
+            // 
+            this.downloadPercentage.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.downloadPercentage.AutoSize = true;
+            this.downloadPercentage.BackColor = System.Drawing.Color.Transparent;
+            this.downloadPercentage.Cursor = System.Windows.Forms.Cursors.Default;
+            this.downloadPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.downloadPercentage.Location = new System.Drawing.Point(404, 160);
+            this.downloadPercentage.Name = "downloadPercentage";
+            this.downloadPercentage.Size = new System.Drawing.Size(48, 29);
+            this.downloadPercentage.TabIndex = 47;
+            this.downloadPercentage.Text = "0%";
+            this.downloadPercentage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MessageBoxDownload
             // 
@@ -140,14 +153,18 @@ namespace CricBlast_GUI.UI
             this.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(518, 265);
+            this.ControlBox = false;
+            this.Controls.Add(this.downloadPercentage);
+            this.Controls.Add(this.downloadBar);
             this.Controls.Add(this.cricBlastLabel);
-            this.Controls.Add(this.guna2ControlBox1);
             this.Controls.Add(this.cricBlastPicture);
             this.Controls.Add(this.message);
             this.Controls.Add(this.yes);
             this.Controls.Add(this.messageMark);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MessageBoxDownload";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CricBlast";
@@ -165,7 +182,8 @@ namespace CricBlast_GUI.UI
         private Guna.UI2.WinForms.Guna2Button yes;
         private Guna.UI2.WinForms.Guna2PictureBox messageMark;
         private System.Windows.Forms.PictureBox cricBlastPicture;
-        private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private System.Windows.Forms.Label cricBlastLabel;
+        private Guna.UI2.WinForms.Guna2ProgressBar downloadBar;
+        private System.Windows.Forms.Label downloadPercentage;
     }
 }

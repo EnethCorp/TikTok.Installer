@@ -1,5 +1,6 @@
 ﻿using CricBlast_GUI.UI.User_Controls;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using static Teams.Team;
 
@@ -19,11 +20,22 @@ namespace CricBlast_GUI.UI
 
         private string TempUsername;
 
-        public ChooseTeam(string _Username)
+        public ChooseTeam(string _Username, List<string> _OptionFields)
         {
             this.TempUsername = _Username;
             InitializeComponent();
             Icon = Properties.Resources.CricBlast;
+            this.teamComboBox.Items.Clear();
+            this.teamComboBox.Items.AddRange(_OptionFields.ToArray());
+            Console.WriteLine();
+            Console.WriteLine();
+            foreach (String str in _OptionFields)
+            {
+                Console.WriteLine(str);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+
         }
 
         private void ChooseTeam_Load(object sender, EventArgs e)

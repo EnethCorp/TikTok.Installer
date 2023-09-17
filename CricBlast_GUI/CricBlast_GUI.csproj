@@ -99,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TikTokLiveClient.cs" />
     <Compile Include="UI\Admin Controls\AddUser.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -9,7 +9,6 @@ namespace CricBlast_GUI.UI
 {
     public partial class MessageBoxOk : Form
     {
-        bool statusError;
         protected override CreateParams CreateParams
         {
             get
@@ -20,16 +19,13 @@ namespace CricBlast_GUI.UI
             }
         }
 
-        public MessageBoxOk(byte mark, string message, string buttonText = "Ok", bool statusError = false)
+        public MessageBoxOk(byte mark, string message, string buttonText = "Ok")
         {
             InitializeComponent();
             Icon = Properties.Resources.CricBlast;
             TopMost = true;
             this.message.Text = message;
             okButton.Text = buttonText;
-
-            this.statusError = statusError;
-
             switch (mark)
             {
                 case 0:
@@ -55,13 +51,7 @@ namespace CricBlast_GUI.UI
                 Console.WriteLine("MainPanel: " + MainForm.Instance);
                 MainForm.Instance.mainPanel.Controls.Clear();
                 //MainForm.Instance.mainPanel.Controls.Add(value: new Welcome());
-            }else if (statusError)
-            {
-                okButton.Controls.Clear();
-                
             }
-
-
             else {
                 /* Login Fail */
                 okButton.Controls.Clear();

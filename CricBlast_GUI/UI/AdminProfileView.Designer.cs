@@ -1,7 +1,7 @@
 ﻿
 namespace CricBlast_GUI.UI
 {
-    partial class GameInfo
+    partial class AdminProfileView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace CricBlast_GUI.UI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameInfo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminProfileView));
             this.closeMiddle = new Guna.UI2.WinForms.Guna2Button();
             this.phoneLabel = new System.Windows.Forms.Label();
             this.emailLabel = new System.Windows.Forms.Label();

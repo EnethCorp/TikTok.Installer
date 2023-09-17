@@ -130,12 +130,6 @@
     <Compile Include="UI\ExitMessage.Designer.cs">
       <DependentUpon>ExitMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MessageBoxDownload.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\MessageBoxDownload.Designer.cs">
-      <DependentUpon>MessageBoxDownload.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\SelectTeams.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,11 +238,11 @@
     <Compile Include="UI\ChooseTeam.Designer.cs">
       <DependentUpon>ChooseTeam.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\GameInfo.cs">
+    <Compile Include="UI\AdminProfileView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\GameInfo.Designer.cs">
-      <DependentUpon>GameInfo.cs</DependentUpon>
+    <Compile Include="UI\AdminProfileView.Designer.cs">
+      <DependentUpon>AdminProfileView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Info.cs">
       <SubType>Form</SubType>
@@ -310,9 +304,6 @@
     <EmbeddedResource Include="UI\ExitMessage.resx">
       <DependentUpon>ExitMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\MessageBoxDownload.resx">
-      <DependentUpon>MessageBoxDownload.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\SelectTeams.resx">
       <DependentUpon>SelectTeams.cs</DependentUpon>
     </EmbeddedResource>
@@ -368,8 +359,8 @@
     <EmbeddedResource Include="UI\User Controls\Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\GameInfo.resx">
-      <DependentUpon>GameInfo.cs</DependentUpon>
+    <EmbeddedResource Include="UI\AdminProfileView.resx">
+      <DependentUpon>AdminProfileView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Info.resx">
       <DependentUpon>Info.cs</DependentUpon>

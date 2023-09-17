@@ -1,7 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+<<<<<<< Updated upstream
+﻿using CricBlast_GUI.UI.User_Controls;
+=======
+using CricBlast_GUI.UI.User_Controls;
+>>>>>>> Stashed changes
+using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using static Teams.Team;
+using System.Collections.Generic;
 
 
 namespace CricBlast_GUI.UI
@@ -18,8 +24,11 @@ namespace CricBlast_GUI.UI
             }
         }
 
-        public ChooseTeam()
+        private string TempUsername;
+
+        public ChooseTeam(string _Username)
         {
+            this.TempUsername = _Username;
             InitializeComponent();
             Icon = Properties.Resources.CricBlast;
             
@@ -45,12 +54,15 @@ namespace CricBlast_GUI.UI
                 teamSelectError.Visible = true;
                 return;
             }
-            Selected.UserTeam = TeamNumber(teamComboBox);
-            Selected.UserTeamLogo = Teams.Team.GetLogo(Selected.UserTeam);
-            Selected.UserTeamPlayerStats = Players.Player.GetTeamPlayers(Selected.UserTeam);
-            Selected.Player = 0;
-            Selected.Format = 0;
-            Selected.UserTeamName = GetStats(Selected.UserTeam, TeamName);
+
+            string Game = (string)teamComboBox.Items[teamComboBox.SelectedIndex];
+            Console.WriteLine("\n\n\n" + Game + "\n\n\n");
+
+            Controls.Clear();
+            Console.WriteLine("MainPanel: " + MainForm.Instance);
+            MainForm.Instance.mainPanel.Controls.Clear();
+            MainForm.Instance.mainPanel.Controls.Add(value: new Home(Game, TempUsername));
+
             Close();
         }
 
@@ -82,6 +94,11 @@ namespace CricBlast_GUI.UI
                 default:
                     return 0;
             }
+        }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

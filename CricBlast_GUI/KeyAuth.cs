@@ -233,7 +233,6 @@ namespace KeyAuth
                 ["pass"] = pass,
                 ["key"] = key,
                 ["email"] = email,
-                ["hwid"] = hwid,
                 ["sessionid"] = sessionid,
                 ["name"] = name,
                 ["ownerid"] = ownerid

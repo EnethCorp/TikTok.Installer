@@ -12,15 +12,17 @@ namespace CricBlast_GUI.UI.User_Controls
         public int SelectedMenu = 1;
         private bool _isAvailable = true;
 
+        public static Home Instance;
+
         /* InterTok Vars: */
         /*                */
-        public string Game, Username;
-        private string LocalLowAppdata, InterTokPath, GamePath;
+        public string Game, Username, LocalLowAppdata, InterTokPath, GameFolderPath, GamePath;
         /*                */
         /* -------------- */
 
         public Home(string _Game, string _Username)
         {
+            Instance = this;
             this.Game = _Game;
             this.Username = _Username;
             InitializeComponent();
@@ -59,19 +61,22 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             LocalLowAppdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
             Console.Write("\n\n" + LocalLowAppdata + "\n\n");
-            InterTokPath = Path.Combine(LocalLowAppdata, "InterTok\\TikTok.") + Game + "\\";
+            InterTokPath = Path.Combine(LocalLowAppdata, "InterTok\\");
             Console.Write("\n\n" + InterTokPath + "\n\n");
-            GamePath = Path.Combine(InterTokPath, "TikTok." + Game + ".exe");
+            GameFolderPath = InterTokPath + "TikTok." + Game + "\\";
+            Console.Write("\n\n" + GameFolderPath + "\n\n");
+            GamePath = GameFolderPath + "TikTok." + Game + ".exe";
             Console.Write("\n\n" + GamePath + "\n\n");
 
             if (!File.Exists(GamePath))
             {
+                Directory.CreateDirectory(GameFolderPath);
+
                 var threadParameters = new ThreadStart(() =>
                 {
                     Invoke((Action)(() =>
                     {
                         new MessageBoxDownload("Game is not installed.").ShowDialog();
-                        new ChooseTeam(Username).ShowDialog();
                     }));
                 });
 
@@ -89,24 +94,9 @@ namespace CricBlast_GUI.UI.User_Controls
         //    userPhoto.Image = Selected.UserImage;
         //}
 
-
-        private void tournament_Click(object sender, EventArgs e)
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
-            if (SelectedMenu == 6) return;
-
-            var threadParameters = new ThreadStart(() =>
-            {
-                Invoke((Action)(() =>
-                {
-                    if (Selected.Tournament)
-                        homeSubPanel.Controls.Add(value: new TournamentPlay());
-                    else
-                        homeSubPanel.Controls.Add(value: new TournamentPlayError());
-                    loading.Visible = false;
-                }));
-            });
-            var thread = new Thread(threadParameters);
-            thread.Start();
+            new ChooseTeam(Username).ShowDialog();
         }
 
         private void logout_Click(object sender, EventArgs e)
@@ -147,6 +137,7 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             System.Threading.Thread.Sleep(300);
             ChangeLabelText(StateLabel, "Running");
+            System.Diagnostics.Process.Start(GamePath);
             ChangeImageColor(OnlineIcon, Color.Green);
             ChangeButtonState(StartGameButton, false);
         }

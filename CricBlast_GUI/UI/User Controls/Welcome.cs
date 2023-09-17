@@ -8,8 +8,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Collections.Generic;
 using System.Linq;
-
-
+using System.Runtime.CompilerServices;
+using System.IO;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -22,32 +22,52 @@ namespace CricBlast_GUI.UI.User_Controls
             version: "1.0"
         );
 
+        string key_path = "C:\\key";
+        string key;
+
         private void login_Click(object sender, System.EventArgs e)
         {
+            KeyAuthLogin();
+        }
 
+        private void KeyAuthLogin()
+        {
+            Controls.Clear();
 
             KeyAuthApp.init();
             autoUpdate();
-
             Console.WriteLine(usernameTextBox.Text);
-            string key = usernameTextBox.Text;
-            Controls.Clear();
-
+            key = usernameTextBox.Text;
             KeyAuthApp.license(key);
-
 
             if (!KeyAuthApp.response.success)
             {
                 new MessageBoxOk(Selected.ErrorMark, KeyAuthApp.response.message).ShowDialog();
                 Console.WriteLine("\nStatus: " + KeyAuthApp.response.message);
+
+                if (File.Exists(key_path))
+                {
+                    File.Delete(key_path);
+                }
+
                 return;
             }
 
-
-            Console.WriteLine("\nLogged In!"); // at this point, the client has been authenticated. Put the code you want to run after here
-            var threadParameters1 = new ThreadStart(() =>
+            using (StreamWriter writer = new StreamWriter(key_path))
             {
-                Invoke((Action)(() => {
+                writer.Write(key);
+            }
+
+            string readText = File.ReadAllText(key_path);
+            Console.WriteLine(readText);
+
+
+            string Username = passwordTextBox.Text = usernameTextBox.Text.Split('-')[1];
+
+            var threadParameters = new ThreadStart(() =>
+            {
+                Invoke((Action)(() =>
+                {
                     new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
 
                     string[] optionFields = KeyAuthApp.getvar("AvailableGames").Split(',');
@@ -56,10 +76,10 @@ namespace CricBlast_GUI.UI.User_Controls
                 }));
             });
 
-            var thread1 = new Thread(threadParameters1);
-            thread1.Start();
-
+            var thread = new Thread(threadParameters);
+            thread.Start();
         }
+
 
         private void forgotPassword_Click(object sender, System.EventArgs e)
         {
@@ -76,7 +96,6 @@ namespace CricBlast_GUI.UI.User_Controls
                     break;
             }
         }
-
         static void autoUpdate()
         {
             if (KeyAuthApp.response.message == "invalidver")
@@ -129,7 +148,6 @@ namespace CricBlast_GUI.UI.User_Controls
                 Environment.Exit(0);
             }
         }
-
         static string random_string()
         {
             string str = null;
@@ -141,12 +159,6 @@ namespace CricBlast_GUI.UI.User_Controls
             }
             return str;
         }
-
-
-
-
-
-
         protected override CreateParams CreateParams
         {
             get
@@ -156,12 +168,22 @@ namespace CricBlast_GUI.UI.User_Controls
                 return cp;
             }
         }
-
         private bool _admin;
 
         public Welcome()
         {
             InitializeComponent();
+            this.Load += new EventHandler(CheckKeyFile_Load);
+        }
+
+        private void CheckKeyFile_Load(object sender, EventArgs e)
+        {
+            if (File.Exists(key_path))
+            {
+                string str = File.ReadAllText(key_path);
+                Console.WriteLine("\n\n Key file exists. " + str + "\n\n");
+                this.usernameTextBox.Text = str;
+            }
         }
 
         private void Welcome_Load(object sender, System.EventArgs e)

@@ -136,7 +136,7 @@ namespace CricBlast_GUI.UI
             this.interTokLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.interTokLabel.Location = new System.Drawing.Point(34, 10);
             this.interTokLabel.Name = "interTokLabel";
-            this.interTokLabel.Size = new System.Drawing.Size(76, 21);
+            this.interTokLabel.Size = new System.Drawing.Size(73, 21);
             this.interTokLabel.TabIndex = 38;
             this.interTokLabel.Text = "InterTok";
             // 
@@ -166,6 +166,7 @@ namespace CricBlast_GUI.UI
             this.guna2ControlBox1.ShadowDecoration.Parent = this.guna2ControlBox1;
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox1.TabIndex = 36;
+            this.guna2ControlBox1.Click += new System.EventHandler(this.guna2ControlBox1_Click);
             // 
             // ChooseTeam
             // 

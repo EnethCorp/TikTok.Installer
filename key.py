@@ -38,7 +38,7 @@ def clear():
 
 def getchecksum():
     md5_hash = hashlib.md5()
-    file = open(''.join(sys.argv), "rb")
+    file = open(''.join(sys.argv[0]), "rb")
     md5_hash.update(file.read())
     digest = md5_hash.hexdigest()
     return digest
@@ -59,7 +59,7 @@ def checkLicense(key: str):
 
     print("Initializing")
     keyauthapp = api(
-        name = "Tiktok.BallGame",
+        name = "Tiktok.Games",
         ownerid = "qdPVeuvG2s",
         secret = "44d7d1eff612aa588fedfcff6768e97a8fa1ee541a9486a00e1ed7f418fbc244",
         version = "1.0",
@@ -102,8 +102,8 @@ def checkLicense(key: str):
 
     print(key)
 
-    success = keyauthapp.license(key, hwid=hwid)
-
+    #success = keyauthapp.license(key, hwid=hwid)
+    success = keyauthapp.license(key, hwid="")
     if not success:
         os.remove(key_path)
         

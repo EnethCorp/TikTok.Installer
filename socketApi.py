@@ -83,11 +83,6 @@ async def start_local_server(events: deque, downloadedPfp: list):
     server = await asyncio.start_server(partial_callback_func, HOST, PORT)
 
 
-    appdata = os.path.abspath(os.getenv("LOCALAPPDATA"))
-    unity_path = os.path.join(appdata, "Programs\\PLINKO\\Tiktok.BallGame.exe")
-    print(unity_path)
-    subprocess.call(f"{unity_path}")
-
     async with server:
         await server.serve_forever()
 

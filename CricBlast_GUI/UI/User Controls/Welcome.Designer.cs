@@ -102,11 +102,11 @@ namespace CricBlast_GUI.UI.User_Controls
             // 
             // usernameTextBox
             // 
+            this.usernameTextBox.Enabled = true;
             this.usernameTextBox.Animated = true;
             this.usernameTextBox.BackColor = System.Drawing.Color.Transparent;
             this.usernameTextBox.BorderRadius = 3;
             this.usernameTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.usernameTextBox.DefaultText = "";
             this.usernameTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.usernameTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.usernameTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -121,9 +121,9 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameTextBox.Location = new System.Drawing.Point(736, 278);
             this.usernameTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.PasswordChar = '\0';
             this.usernameTextBox.PlaceholderText = "Please enter your key...";
             this.usernameTextBox.SelectedText = "";
+            this.usernameTextBox.SelectionStart = 6;
             this.usernameTextBox.ShadowDecoration.Parent = this.usernameTextBox;
             this.usernameTextBox.Size = new System.Drawing.Size(409, 47);
             this.usernameTextBox.TabIndex = 1;

@@ -53,7 +53,7 @@ namespace CricBlast_GUI.UI
             
             */
 
-            string url = "https://download1500.mediafire.com/731vejd6mhugPEBkjWebllXWt_7dQYHlCpHE8aTCgbKt-NWuiDaY960Xpkwcz76Q0EdHe07ssied6nle-r_ui479rRgDZghUN6vCZIkZORboZ-0xd3zGwp3_dVeufmmq3xZvWYp6j1Qt2jxAEIzi2M4swxi86eunaVB_B2C1RPQb5g/atik7hhjtfi9eyf/intertok_game.zip";
+            string url = "https://ucb510f9946f56e05bf87b7c35f4.dl.dropboxusercontent.com/cd/0/get/CD7ZU0v1smPb_3ffldNhVypwEG7tAatvA2q0L3azP2ex_NEYYTDSTV8UD5VdadohMEqmldZTHuWkH4T9GYJgFE_OkaLu4giL5mekeG0UjfPVACvJracU1KuiEK9sxbfrdqu0zCWxWPwd8mco4oYsf9fqIGIRmz08oLUoMOtHB4ZwyQ/file#";
             Thread thread = new Thread(() =>
             {
                 Uri uri = new Uri(url);
@@ -63,8 +63,14 @@ namespace CricBlast_GUI.UI
         }
         private void Client_DownloadFileCompleted(Object sender, AsyncCompletedEventArgs e)
         {
+            if (this.InvokeRequired)
+            {
+                // If not, invoke this method on the UI thread
+                this.Invoke(new Action(() => Client_DownloadFileCompleted(sender, e)));
+                return;
+            }
             MessageBox.Show("Download complete!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+
             /* Unzip the file */
             ZipFile.ExtractToDirectory(zip_path, Home.Instance.GameFolderPath);
 
@@ -72,7 +78,6 @@ namespace CricBlast_GUI.UI
             File.Delete(zip_path);
 
             /* Close the Window */
-            Thread.Sleep(500);
             Close();
         }
         private void Client_DownloadProgressChanged(Object sender, DownloadProgressChangedEventArgs e)

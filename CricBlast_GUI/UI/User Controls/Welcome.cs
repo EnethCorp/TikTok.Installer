@@ -22,8 +22,11 @@ namespace CricBlast_GUI.UI.User_Controls
             version: "1.0"
         );
 
-        string key_path = "C:\\key";
-        string key;
+        string LocalLowAppdata;
+        string InterTokPath;
+        string key_path;
+
+        public static string key;
 
         private void login_Click(object sender, System.EventArgs e)
         {
@@ -32,6 +35,12 @@ namespace CricBlast_GUI.UI.User_Controls
 
         private void KeyAuthLogin()
         {
+            LocalLowAppdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+            InterTokPath = Path.Combine(LocalLowAppdata, "InterTok\\");
+            key_path = Path.Combine(InterTokPath, "key");
+            
+            Console.WriteLine(key_path);
+
             Controls.Clear();
 
             KeyAuthApp.init();
@@ -70,8 +79,11 @@ namespace CricBlast_GUI.UI.User_Controls
                 {
                     new MessageBoxOk(Selected.CheckMark, "You have successfully logged in.").ShowDialog();
 
-                    string[] optionFields = KeyAuthApp.getvar("AvailableGames").Split(',');
-                    ChooseTeam chooseGameBox = new ChooseTeam(optionFields.ToList());
+                    List<string> optionFields = KeyAuthApp.getvar("AvailableGames").Split(',').ToList();
+
+                    optionFields.Insert(0, "Select Game...");
+
+                    ChooseTeam chooseGameBox = new ChooseTeam(optionFields);
                     chooseGameBox.ShowDialog();
                 }));
             });

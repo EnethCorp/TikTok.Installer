@@ -53,7 +53,7 @@ namespace CricBlast_GUI.UI
             
             */
 
-            string url = "https://ucb510f9946f56e05bf87b7c35f4.dl.dropboxusercontent.com/cd/0/get/CD7ZU0v1smPb_3ffldNhVypwEG7tAatvA2q0L3azP2ex_NEYYTDSTV8UD5VdadohMEqmldZTHuWkH4T9GYJgFE_OkaLu4giL5mekeG0UjfPVACvJracU1KuiEK9sxbfrdqu0zCWxWPwd8mco4oYsf9fqIGIRmz08oLUoMOtHB4ZwyQ/file#";
+            string url = "https://cdn.discordapp.com/attachments/1136056397038104598/1153427231230660689/pinball.zip";
             Thread thread = new Thread(() =>
             {
                 Uri uri = new Uri(url);

@@ -151,7 +151,7 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             Process process = new Process();
             process.StartInfo.FileName = "python.exe"; // Replace with the path to your executable
-            process.StartInfo.Arguments = "C:\\Users\\jakob\\OneDrive\\Dokumente\\GitHub\\Tiktok.Installer\\tiktokLiveApi.py seandoesmagic KEYAUTH-admin, " + Game; // Replace with any command-line arguments
+            process.StartInfo.Arguments = $"D:\\Programmieren\\Projekte\\TiktokLive\\TikTok.Installer\\tiktokLiveApi.py {username} {key}, " + Game; // Replace with any command-line arguments
 
             process.Start();
 
@@ -168,7 +168,7 @@ namespace CricBlast_GUI.UI.User_Controls
                     if (File.Exists(successFile))
                     {
                         string programStatus = File.ReadAllText(successFile);
-                        Console.WriteLine("file content: " + programStatus);
+                        Console.WriteLine("\n\nfile content: " + programStatus + "\n\n");
                         if (programStatus == "positive")
                         {
                             Console.WriteLine("POSITIVE:: "+  programStatus);
@@ -202,6 +202,7 @@ namespace CricBlast_GUI.UI.User_Controls
 
             BeginInvoke((Action)(() => {
                 ChangeLabelText(StateLabel, "Live");
+                ChangeImageColor(OnlineIcon, Color.Yellow);
                 ChangeButtonState(ConnectButton, true);
                 ChangeButtonState(StartGameButton, false);
             }));

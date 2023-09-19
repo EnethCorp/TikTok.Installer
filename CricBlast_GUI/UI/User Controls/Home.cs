@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
@@ -131,7 +133,7 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             ChangeButtonState(ConnectButton, false);
             System.Threading.Thread.Sleep(1000);
-            ChangeLabelText(StateLabel, "Connected");
+            ChangeLabelText(StateLabel, "Connecting");
             Thread tiktokServerThread = new Thread(() => startTikTokApiLocalServer(this.Username, Welcome.key));
             tiktokServerThread.Start();
         }
@@ -146,12 +148,45 @@ namespace CricBlast_GUI.UI.User_Controls
         }
 
 
+        private WebClient client;
+        private bool downloadComplete = true;
 
         private void startTikTokApiLocalServer(string username, string key)
         {
+            client = new WebClient();
+            string apiPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "api.exe");
+                
+            // Path.Combine(InterTokPath, "api.exe");
+
+
+            Console.WriteLine("\n\n" + apiPath + "\n\n");
+
+
+            if (!File.Exists(apiPath))
+            {
+                downloadComplete = false;
+                Console.WriteLine("\n\nDOWNLOADING! \n\n");
+                // Download tiktok api at "InterTokPath" 
+                string url = "https://cdn.discordapp.com/attachments/1136056397038104598/1153809591717605376/tiktokLiveApi.exe";
+                Thread thread = new Thread(() =>
+                {
+                    Uri uri = new Uri(url);
+                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    client.DownloadFileAsync(uri, apiPath);
+                });
+                thread.Start();
+            }
+
+            while (!downloadComplete)
+            {
+                Thread.Sleep(300);
+            }
+
+
             Process process = new Process();
-            process.StartInfo.FileName = "python.exe"; // Replace with the path to your executable
-            process.StartInfo.Arguments = "C:\\Users\\jakob\\OneDrive\\Dokumente\\GitHub\\Tiktok.Installer\\tiktokLiveApi.py seandoesmagic KEYAUTH-admin, " + Game; // Replace with any command-line arguments
+            process.StartInfo.FileName = $"{apiPath}"; // Replace with the path to your executable
+            process.StartInfo.Arguments = $" {username} {key} {Game}"; // Replace with any command-line arguments
 
             process.Start();
 
@@ -173,6 +208,7 @@ namespace CricBlast_GUI.UI.User_Controls
                         {
                             Console.WriteLine("POSITIVE:: "+  programStatus);
                             BeginInvoke((Action)(() => {
+                                Thread.Sleep(5000);
                                 ChangeLabelText(StateLabel, "Connected");
                                 ChangeButtonState(StartGameButton, true);
                             }));
@@ -201,10 +237,23 @@ namespace CricBlast_GUI.UI.User_Controls
 
 
             BeginInvoke((Action)(() => {
+                ChangeImageColor(OnlineIcon, Color.Yellow);
                 ChangeLabelText(StateLabel, "Live");
                 ChangeButtonState(ConnectButton, true);
                 ChangeButtonState(StartGameButton, false);
             }));
+        }
+
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+
+        }
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate
+            {
+                downloadComplete = true;
+            });
         }
     }
 }

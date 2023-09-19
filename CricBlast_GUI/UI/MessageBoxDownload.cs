@@ -44,7 +44,7 @@ namespace CricBlast_GUI.UI
             client.DownloadProgressChanged += Client_DownloadProgressChanged;
             client.DownloadFileCompleted += Client_DownloadFileCompleted;
 
-            zip_path = Home.Instance.GameFolderPath + "installer.zip";
+            zip_path = Home.GameFolderPath + "installer.zip";
             Console.Write("\n\n" + zip_path + "\n\n");
 
             /*
@@ -53,7 +53,21 @@ namespace CricBlast_GUI.UI
             
             */
 
-            string url = "https://ucb510f9946f56e05bf87b7c35f4.dl.dropboxusercontent.com/cd/0/get/CD7ZU0v1smPb_3ffldNhVypwEG7tAatvA2q0L3azP2ex_NEYYTDSTV8UD5VdadohMEqmldZTHuWkH4T9GYJgFE_OkaLu4giL5mekeG0UjfPVACvJracU1KuiEK9sxbfrdqu0zCWxWPwd8mco4oYsf9fqIGIRmz08oLUoMOtHB4ZwyQ/file#";
+            string url = ""; 
+            switch (Home.Game) {
+
+                case "Plinko":
+                    url = "https://cdn.discordapp.com/attachments/1136056397038104598/1153832716618432512/TikTok.Plinko.zip";
+                    break;
+
+                case "Pinball":
+                    url = "https://cdn.discordapp.com/attachments/1136056397038104598/1153427231230660689/pinball.zip";
+                    break;
+
+                case "TerritoryWar":
+                    // ADD Territory War URL
+                    break;
+            }
             Thread thread = new Thread(() =>
             {
                 Uri uri = new Uri(url);
@@ -72,7 +86,7 @@ namespace CricBlast_GUI.UI
             MessageBox.Show("Download complete!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             /* Unzip the file */
-            ZipFile.ExtractToDirectory(zip_path, Home.Instance.GameFolderPath);
+            ZipFile.ExtractToDirectory(zip_path, Home.GameFolderPath);
 
             /* Delete Zip File */ 
             File.Delete(zip_path);

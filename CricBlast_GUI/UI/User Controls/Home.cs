@@ -15,19 +15,16 @@ namespace CricBlast_GUI.UI.User_Controls
         public int SelectedMenu = 1;
         private bool _isAvailable = true;
 
-        public static Home Instance;
-
         /* InterTok Vars: */
         /*                */
-        public string Game, Username, LocalLowAppdata, InterTokPath, GameFolderPath, GamePath;
+        public static string Game, Username, LocalLowAppdata, InterTokPath, GameFolderPath, GamePath;
         /*                */
         /* -------------- */
 
         public Home(string _Game, string _Username)
         {
-            Instance = this;
-            this.Game = _Game;
-            this.Username = _Username;
+            Game = _Game;
+            Username = _Username;
             InitializeComponent();
 
             UpdateHomeLabels();
@@ -134,7 +131,7 @@ namespace CricBlast_GUI.UI.User_Controls
             ChangeButtonState(ConnectButton, false);
             System.Threading.Thread.Sleep(1000);
             ChangeLabelText(StateLabel, "Connecting");
-            Thread tiktokServerThread = new Thread(() => startTikTokApiLocalServer(this.Username, Welcome.key));
+            Thread tiktokServerThread = new Thread(() => startTikTokApiLocalServer(Username, Welcome.key));
             tiktokServerThread.Start();
         }
 

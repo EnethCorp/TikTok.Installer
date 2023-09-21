@@ -75,9 +75,9 @@ namespace CricBlast_GUI.UI
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(88, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 25);
+            this.label1.Size = new System.Drawing.Size(200, 25);
             this.label1.TabIndex = 22;
-            this.label1.Text = "CHOOSE YOUR TEAM";
+            this.label1.Text = "CHOOSE YOUR GAME";
             // 
             // okButton
             // 

@@ -145,7 +145,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.updateButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.updateButton.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.updateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
-            this.updateButton.Location = new System.Drawing.Point(76, 643);
+            this.updateButton.Location = new System.Drawing.Point(71, 634);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(156, 30);
             this.updateButton.TabIndex = 8;
@@ -170,7 +170,7 @@ namespace CricBlast_GUI.UI.User_Controls
             this.guna2Button1.HoverState.Parent = this.guna2Button1;
             this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button1.ImageOffset = new System.Drawing.Point(3, 1);
-            this.guna2Button1.Location = new System.Drawing.Point(45, 596);
+            this.guna2Button1.Location = new System.Drawing.Point(45, 587);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
             this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;

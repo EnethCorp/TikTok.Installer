@@ -56,18 +56,10 @@ namespace CricBlast_GUI.UI
                 MainForm.Instance.mainPanel.Controls.Clear();
                 //MainForm.Instance.mainPanel.Controls.Add(value: new Welcome());
             }
-            else if (statusError)
-            {
-                okButton.Controls.Clear();
-            }
-
             else
             {
                 /* Login Fail */
                 okButton.Controls.Clear();
-                Console.WriteLine("MainPanel: " + MainForm.Instance);
-                MainForm.Instance.mainPanel.Controls.Clear();
-                MainForm.Instance.mainPanel.Controls.Add(value: new Welcome());
             }
 
 

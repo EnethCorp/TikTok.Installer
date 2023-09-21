@@ -11,6 +11,7 @@ using System.IO.Compression;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+ 
 
 namespace CricBlast_GUI.UI
 {
@@ -52,57 +53,65 @@ namespace CricBlast_GUI.UI
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
-            client = new WebClient();
-            client.DownloadProgressChanged += Client_DownloadProgressChanged;
-            client.DownloadFileCompleted += Client_DownloadFileCompleted;
+                client = new WebClient();
+                client.DownloadProgressChanged += Client_DownloadProgressChanged;
+                client.DownloadFileCompleted += Client_DownloadFileCompleted;
 
-            zip_path = Home.GameFolderPath + "installer.zip";
-            Console.Write("\n\n" + zip_path + "\n\n");
+                zip_path = Home.GameFolderPath + "installer.zip";
+                Console.Write("\n\n" + zip_path + "\n\n");
 
-            /*
+                /*
              
-                CHANGE FROM MEDIAFIRE BECAUSE IT RATE LIMITS    
+                    CHANGE FROM MEDIAFIRE BECAUSE IT RATE LIMITS    
             
-            */
+                */
 
-            string url = "";
-            int index = -1;
-            switch (Home.Game) {
+                string url = "";
+                int index = -1;
+                switch (Home.Game) {
 
-                case "Plinko":
-                    index = 0;
-                    break;
+                    case "Plinko":
+                        index = 1;
+                        break;
 
-                case "Pinball":
-                    index = 1;
-                    break;
+                    case "Pinball":
+                        index = 2;
+                        break;
 
-                case "TerritoryWar":
-                    index = 2;
-                    break;
-            }
-
-            string pastebin = new WebClient().DownloadString("https://pastebin.com/raw/NsxaFHfZ");
-            using (var reader = new StringReader(pastebin))
-            {
-                for (int i = 0; i < index; i++)
-                {
-                    reader.ReadLine();
+                    case "TerritoryWar":
+                        index = 3;
+                        break;
                 }
-                url = reader.ReadLine();
-            }
+
+                string pastebin = new WebClient().DownloadString("https://pastebin.com/raw/NsxaFHfZ");
+                using (var reader = new StringReader(pastebin))
+                {
+                    for (int i = 0; i < index; i++)
+                    {
+                        reader.ReadLine();
+                    }
+                    url = reader.ReadLine();
+                }
 
            
-            Console.Write("\n\n" + pastebin + "\n\n");
-            Console.Write("URL: " + url + "\n\n");
+                Console.Write("\n\n" + pastebin + "\n\n");
+                Console.Write("URL: " + url + "\n\n");
 
 
-            Thread thread = new Thread(() =>
-            {
-                Uri uri = new Uri(url);
-                client.DownloadFileAsync(uri, zip_path);
-            });
-            thread.Start();
+                Thread thread = new Thread(() =>
+                {
+                    try
+                    {
+                        Uri uri = new Uri(url);
+                        client.DownloadFileAsync(uri, zip_path);
+                    }
+                    catch (Exception)
+                    {
+                        new MessageBoxOk(Selected.ErrorMark, "Error with Download Links. Please ask in discord for support", statusError:false).ShowDialog();
+                    }
+                });
+                thread.Start();
+
         }
         private void Client_DownloadFileCompleted(Object sender, AsyncCompletedEventArgs e)
         {

@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 
 namespace CricBlast_GUI.UI.User_Controls
 {
@@ -43,13 +44,16 @@ namespace CricBlast_GUI.UI.User_Controls
 
             if (!KeyAuthApp.response.success)
             {
-                new MessageBoxOk(Selected.ErrorMark, KeyAuthApp.response.message).ShowDialog();
+                new MessageBoxOk(Selected.ErrorMark, KeyAuthApp.response.message, statusError: true).ShowDialog();
+                Console.WriteLine("MainPanel: " + MainForm.Instance);
+                MainForm.Instance.mainPanel.Controls.Clear();
+                MainForm.Instance.mainPanel.Controls.Add(value: new Welcome());
                 Console.WriteLine("\nStatus: " + KeyAuthApp.response.message);
 
-                if (File.Exists(key_path))
-                {
-                    File.Delete(key_path);
-                }
+                //if (File.Exists(key_path))
+                //{
+                //    File.Delete(key_path);
+                //}
 
                 return;
             }
@@ -191,6 +195,36 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             usernameTextBox.Text = Selected.UserDetails[2];
             passwordTextBox.Text = Selected.UserDetails[3];
+
+            //Process[] runningProcesses = Process.GetProcesses();
+            //foreach (Process process in runningProcesses)
+            //{
+            //    // now check the modules of the process
+            //    foreach (ProcessModule module in process.Modules)
+            //    {
+            //        if (module.FileName.Equals("tiktokLiveApi.exe"))
+            //        {
+            //            process.PriorityClass = ProcessPriorityClass.BelowNormal;
+            //            process.Kill();
+            //            Console.WriteLine("\n\nTerminated old API process.\n\n");
+            //        }
+            //    }
+            //}
+
+            string processName = "tiktokLiveApi.exe";
+            string query = $"SELECT * FROM Win32_Process WHERE Name = '{processName}'";
+
+            // Connect to WMI and execute the query
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            {
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    // Terminate the process
+                    obj.InvokeMethod("Terminate", null);
+                    Console.WriteLine($"Terminated process: {processName}");
+                    Console.WriteLine("\n\nTerminated old API process.\n\n");
+                }
+            }
         }
 
         private void refreshPicture_Click(object sender, System.EventArgs e)

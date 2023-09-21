@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Management;
 using System.Media;
 using System.Windows.Forms;
 
@@ -30,6 +31,20 @@ namespace CricBlast_GUI.UI
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            string processName = "tiktokLiveApi.exe";
+            string query = $"SELECT * FROM Win32_Process WHERE Name = '{processName}'";
+
+            // Connect to WMI and execute the query
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            {
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    // Terminate the process
+                    obj.InvokeMethod("Terminate", null);
+                    Console.WriteLine($"Terminated process: {processName}");
+                    Console.WriteLine("\n\nTerminated old API process.\n\n");
+                }
+            }
             Application.Exit();
         }
     }

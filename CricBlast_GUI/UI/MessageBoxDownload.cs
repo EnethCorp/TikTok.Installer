@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO.Compression;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CricBlast_GUI.UI
 {
@@ -25,14 +26,25 @@ namespace CricBlast_GUI.UI
             }
         }
 
-        public MessageBoxDownload(string message)
+        public MessageBoxDownload(string message, int icon)
         {
             InitializeComponent();
             Icon = Properties.Resources.CricBlast;
 
             this.message.Text = message;
-            SystemSounds.Hand.Play();
-            messageMark.Image = Properties.Resources.Error_Mark;
+            if (icon == 0)
+            {
+                SystemSounds.Hand.Play();
+                messageMark.Image = Properties.Resources.Error_Mark;
+            } 
+            else if (icon == 1)
+            {
+                messageMark.Image = Properties.Resources.Warning_Mark;
+            }
+            else if (icon == 2)
+            {
+                messageMark.Image = Properties.Resources.Check_Mark;
+            }
         }
 
         WebClient client;
@@ -53,21 +65,38 @@ namespace CricBlast_GUI.UI
             
             */
 
-            string url = ""; 
+            string url = "";
+            int index = -1;
             switch (Home.Game) {
 
                 case "Plinko":
-                    url = "https://cdn.discordapp.com/attachments/1136056397038104598/1153832716618432512/TikTok.Plinko.zip";
+                    index = 0;
                     break;
 
                 case "Pinball":
-                    url = "https://cdn.discordapp.com/attachments/1136056397038104598/1153427231230660689/pinball.zip";
+                    index = 1;
                     break;
 
                 case "TerritoryWar":
-                    // ADD Territory War URL
+                    index = 2;
                     break;
             }
+
+            string pastebin = new WebClient().DownloadString("https://pastebin.com/raw/NsxaFHfZ");
+            using (var reader = new StringReader(pastebin))
+            {
+                for (int i = 0; i < index; i++)
+                {
+                    reader.ReadLine();
+                }
+                url = reader.ReadLine();
+            }
+
+           
+            Console.Write("\n\n" + pastebin + "\n\n");
+            Console.Write("URL: " + url + "\n\n");
+
+
             Thread thread = new Thread(() =>
             {
                 Uri uri = new Uri(url);

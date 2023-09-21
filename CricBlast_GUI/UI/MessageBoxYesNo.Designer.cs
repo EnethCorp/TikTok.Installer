@@ -152,9 +152,9 @@ namespace CricBlast_GUI.UI
             this.cricBlastLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cricBlastLabel.Location = new System.Drawing.Point(34, 10);
             this.cricBlastLabel.Name = "cricBlastLabel";
-            this.cricBlastLabel.Size = new System.Drawing.Size(76, 21);
+            this.cricBlastLabel.Size = new System.Drawing.Size(73, 21);
             this.cricBlastLabel.TabIndex = 44;
-            this.cricBlastLabel.Text = "CricBlast";
+            this.cricBlastLabel.Text = "InterTok";
             // 
             // MessageBoxYesNo
             // 

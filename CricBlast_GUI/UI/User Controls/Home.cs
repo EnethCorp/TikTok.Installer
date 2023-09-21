@@ -76,7 +76,7 @@ namespace CricBlast_GUI.UI.User_Controls
                 {
                     Invoke((Action)(() =>
                     {
-                        new MessageBoxDownload("Game is not installed.").ShowDialog();
+                        new MessageBoxDownload("Game is not installed.", 0).ShowDialog();
                     }));
                 });
 
@@ -147,16 +147,46 @@ namespace CricBlast_GUI.UI.User_Controls
 
         private WebClient client;
         private bool downloadComplete = true;
+        private bool ffmpegComplete = true;
+
+        private void uninstallButton_Click(object sender, EventArgs e)
+        {
+            if (StateLabel.Text == "Running")
+            {
+                BeginInvoke((Action)(() => {
+                    new MessageBoxOk(Selected.ErrorMark, "Game is running, please stop it before updating", statusError: true).ShowDialog();
+                }));
+                return;
+            }
+
+            /* DELETE ALL GAME FILES */
+            System.IO.DirectoryInfo di = new DirectoryInfo(GameFolderPath);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+
+            /* REDOWNLOAD GAME FILES */
+            Invoke((Action)(() =>
+            {
+                new MessageBoxDownload("Update game now?", 2).ShowDialog();
+            }));
+        }
 
         private void startTikTokApiLocalServer(string username, string key)
         {
             client = new WebClient();
             string apiPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "api.exe");
-                
+            string ffmpegPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg.exe");
             // Path.Combine(InterTokPath, "api.exe");
 
 
             Console.WriteLine("\n\n" + apiPath + "\n\n");
+            Console.WriteLine("\n\n" + ffmpegPath + "\n\n");
 
 
             if (!File.Exists(apiPath))
@@ -164,7 +194,7 @@ namespace CricBlast_GUI.UI.User_Controls
                 downloadComplete = false;
                 Console.WriteLine("\n\nDOWNLOADING! \n\n");
                 // Download tiktok api at "InterTokPath" 
-                string url = "https://cdn.discordapp.com/attachments/1136056397038104598/1153809591717605376/tiktokLiveApi.exe";
+                string url = "https://cdn.discordapp.com/attachments/1136056397038104598/1154068088841584752/tiktokLiveApi.exe";
                 Thread thread = new Thread(() =>
                 {
                     Uri uri = new Uri(url);
@@ -180,6 +210,28 @@ namespace CricBlast_GUI.UI.User_Controls
                 Thread.Sleep(300);
             }
 
+ 
+
+            if (!File.Exists(ffmpegPath))
+            {
+                ffmpegComplete = false;
+                Console.WriteLine("\n\nDOWNLOADING! \n\n");
+                // Download tiktok api at "InterTokPath" 
+                string url = "https://cdn.discordapp.com/attachments/1136056397038104598/1154063989924434100/ffmpeg.exe";
+                Thread thread = new Thread(() =>
+                {
+                    Uri uri = new Uri(url);
+                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChangedFFMPEG);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompletedFFMPEG);
+                    client.DownloadFileAsync(uri, ffmpegPath);
+                });
+                thread.Start();
+            }
+
+            while (!ffmpegComplete)
+            {
+                Thread.Sleep(300);
+            }
 
             Process process = new Process();
             process.StartInfo.FileName = $"{apiPath}"; // Replace with the path to your executable
@@ -250,6 +302,17 @@ namespace CricBlast_GUI.UI.User_Controls
             this.BeginInvoke((MethodInvoker)delegate
             {
                 downloadComplete = true;
+            });
+        }
+        void client_DownloadProgressChangedFFMPEG(object sender, DownloadProgressChangedEventArgs e)
+        {
+
+        }
+        void client_DownloadFileCompletedFFMPEG(object sender, AsyncCompletedEventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate
+            {
+                ffmpegComplete = true;
             });
         }
     }

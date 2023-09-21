@@ -34,11 +34,13 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             this.components = new System.ComponentModel.Container();
             this.homeSubPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.logout = new System.Windows.Forms.Label();
-            this.menuPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.OnlineIcon = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.logout = new System.Windows.Forms.Label();
             this.StateLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
+            this.menuPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.updateButton = new System.Windows.Forms.Label();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.ConnectButton = new Guna.UI2.WinForms.Guna2Button();
             this.StartGameButton = new Guna.UI2.WinForms.Guna2Button();
             this.GoLiveButton = new Guna.UI2.WinForms.Guna2Button();
@@ -46,10 +48,9 @@ namespace CricBlast_GUI.UI.User_Controls
             this.logoPicture = new System.Windows.Forms.PictureBox();
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.homeSubPanel.SuspendLayout();
-            this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OnlineIcon)).BeginInit();
+            this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,6 +69,18 @@ namespace CricBlast_GUI.UI.User_Controls
             this.homeSubPanel.Size = new System.Drawing.Size(972, 720);
             this.homeSubPanel.TabIndex = 12;
             // 
+            // OnlineIcon
+            // 
+            this.OnlineIcon.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.OnlineIcon.ImageRotate = 0F;
+            this.OnlineIcon.Location = new System.Drawing.Point(45, 100);
+            this.OnlineIcon.Name = "OnlineIcon";
+            this.OnlineIcon.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.OnlineIcon.ShadowDecoration.Parent = this.OnlineIcon;
+            this.OnlineIcon.Size = new System.Drawing.Size(14, 14);
+            this.OnlineIcon.TabIndex = 7;
+            this.OnlineIcon.TabStop = false;
+            // 
             // logout
             // 
             this.logout.AutoSize = true;
@@ -81,35 +94,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.logout.TabIndex = 4;
             this.logout.Text = "Logout";
             this.logout.Click += new System.EventHandler(this.logout_Click);
-            // 
-            // menuPanel
-            // 
-            this.menuPanel.BackColor = System.Drawing.Color.Transparent;
-            this.menuPanel.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Home_Menu;
-            this.menuPanel.Controls.Add(this.guna2Button1);
-            this.menuPanel.Controls.Add(this.ConnectButton);
-            this.menuPanel.Controls.Add(this.StartGameButton);
-            this.menuPanel.Controls.Add(this.GoLiveButton);
-            this.menuPanel.Controls.Add(this.cricBlastLabel);
-            this.menuPanel.Controls.Add(this.logoPicture);
-            this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.menuPanel.Location = new System.Drawing.Point(0, 0);
-            this.menuPanel.Name = "menuPanel";
-            this.menuPanel.ShadowDecoration.Parent = this.menuPanel;
-            this.menuPanel.Size = new System.Drawing.Size(308, 720);
-            this.menuPanel.TabIndex = 11;
-            // 
-            // OnlineIcon
-            // 
-            this.OnlineIcon.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.OnlineIcon.ImageRotate = 0F;
-            this.OnlineIcon.Location = new System.Drawing.Point(45, 100);
-            this.OnlineIcon.Name = "OnlineIcon";
-            this.OnlineIcon.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.OnlineIcon.ShadowDecoration.Parent = this.OnlineIcon;
-            this.OnlineIcon.Size = new System.Drawing.Size(14, 14);
-            this.OnlineIcon.TabIndex = 7;
-            this.OnlineIcon.TabStop = false;
             // 
             // StateLabel
             // 
@@ -135,6 +119,66 @@ namespace CricBlast_GUI.UI.User_Controls
             this.usernameLabel.Size = new System.Drawing.Size(216, 34);
             this.usernameLabel.TabIndex = 6;
             this.usernameLabel.Text = "Username";
+            // 
+            // menuPanel
+            // 
+            this.menuPanel.BackColor = System.Drawing.Color.Transparent;
+            this.menuPanel.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Home_Menu;
+            this.menuPanel.Controls.Add(this.updateButton);
+            this.menuPanel.Controls.Add(this.guna2Button1);
+            this.menuPanel.Controls.Add(this.ConnectButton);
+            this.menuPanel.Controls.Add(this.StartGameButton);
+            this.menuPanel.Controls.Add(this.GoLiveButton);
+            this.menuPanel.Controls.Add(this.cricBlastLabel);
+            this.menuPanel.Controls.Add(this.logoPicture);
+            this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuPanel.Location = new System.Drawing.Point(0, 0);
+            this.menuPanel.Name = "menuPanel";
+            this.menuPanel.ShadowDecoration.Parent = this.menuPanel;
+            this.menuPanel.Size = new System.Drawing.Size(308, 720);
+            this.menuPanel.TabIndex = 11;
+            // 
+            // updateButton
+            // 
+            this.updateButton.AutoSize = true;
+            this.updateButton.BackColor = System.Drawing.Color.Transparent;
+            this.updateButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateButton.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
+            this.updateButton.Location = new System.Drawing.Point(76, 643);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(156, 30);
+            this.updateButton.TabIndex = 8;
+            this.updateButton.Text = "Update Game";
+            this.updateButton.Click += new System.EventHandler(this.uninstallButton_Click);
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.BorderRadius = 10;
+            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
+            this.guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.DisabledState.Parent = this.guna2Button1;
+            this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.HoverState.Parent = this.guna2Button1;
+            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button1.ImageOffset = new System.Drawing.Point(3, 1);
+            this.guna2Button1.Location = new System.Drawing.Point(45, 596);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
+            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
+            this.guna2Button1.Size = new System.Drawing.Size(215, 44);
+            this.guna2Button1.TabIndex = 5;
+            this.guna2Button1.Text = "Change Game";
+            this.guna2Button1.TextOffset = new System.Drawing.Point(2, 0);
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // ConnectButton
             // 
@@ -260,34 +304,6 @@ namespace CricBlast_GUI.UI.User_Controls
             this.DragControl2.TargetControl = this.homeSubPanel;
             this.DragControl2.TransparentWhileDrag = false;
             // 
-            // guna2Button1
-            // 
-            this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.BorderRadius = 10;
-            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
-            this.guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.DisabledState.Parent = this.guna2Button1;
-            this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.ImageOffset = new System.Drawing.Point(3, 1);
-            this.guna2Button1.Location = new System.Drawing.Point(45, 620);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
-            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
-            this.guna2Button1.Size = new System.Drawing.Size(215, 44);
-            this.guna2Button1.TabIndex = 5;
-            this.guna2Button1.Text = "Change Game";
-            this.guna2Button1.TextOffset = new System.Drawing.Point(2, 0);
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,9 +317,9 @@ namespace CricBlast_GUI.UI.User_Controls
             this.Size = new System.Drawing.Size(1280, 720);
             this.homeSubPanel.ResumeLayout(false);
             this.homeSubPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OnlineIcon)).EndInit();
             this.menuPanel.ResumeLayout(false);
             this.menuPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.OnlineIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).EndInit();
             this.ResumeLayout(false);
 
@@ -325,5 +341,6 @@ namespace CricBlast_GUI.UI.User_Controls
         private Guna.UI2.WinForms.Guna2Button ConnectButton;
         private Guna.UI2.WinForms.Guna2CirclePictureBox userPhoto;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private System.Windows.Forms.Label updateButton;
     }
 }

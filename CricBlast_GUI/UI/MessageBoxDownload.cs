@@ -57,6 +57,8 @@ namespace CricBlast_GUI.UI
                 client.DownloadProgressChanged += Client_DownloadProgressChanged;
                 client.DownloadFileCompleted += Client_DownloadFileCompleted;
 
+                this.yes.Enabled = false;
+
                 zip_path = Home.GameFolderPath + "installer.zip";
                 Console.Write("\n\n" + zip_path + "\n\n");
 

@@ -151,9 +151,34 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             System.Threading.Thread.Sleep(300);
             ChangeLabelText(StateLabel, "Running");
-            System.Diagnostics.Process.Start(GamePath);
+            
             ChangeImageColor(OnlineIcon, Color.Green);
             ChangeButtonState(StartGameButton, false);
+
+
+            Thread checkForGameQuit = new Thread(() =>
+            {   
+                if(!File.Exists(GamePath))
+                {
+                    new MessageBoxOk(Selected.WarningMark, "Game is not installed!").ShowDialog();
+                    new ChooseTeam(Username, Welcome.GameList).ShowDialog();
+                }
+                else
+                {
+                    Process game = System.Diagnostics.Process.Start(GamePath);
+                    game.WaitForExit();
+                    BeginInvoke((Action)(() => {
+                        ChangeImageColor(OnlineIcon, Color.Green);
+                        ChangeButtonState(StartGameButton, true);
+                    }));
+                }
+                
+                
+
+            });
+
+            checkForGameQuit.Start();
+
         }
 
 
@@ -200,8 +225,14 @@ namespace CricBlast_GUI.UI.User_Controls
 
             if (!File.Exists(apiPath) || !File.Exists(ffmpegPath))
             {
+
+                Console.WriteLine("Entered goofy ass if");
+
                 if (File.Exists(apiPath))
+                {
                     File.Delete(installerPath);
+                }
+                    
                 else if (File.Exists(ffmpegPath))
                     File.Delete(ffmpegPath);
 
@@ -220,6 +251,7 @@ namespace CricBlast_GUI.UI.User_Controls
 
                 BeginInvoke((Action)(() =>
                 {
+                    new MessageBoxOk(Selected.WarningMark, "Downlading crucial assets. This could take some time, do not close the application!").ShowDialog();
                     ChangeLabelText(StateLabel, "Downloading assets");
                     downloadComplete = false;
                     Console.WriteLine("\n\nDOWNLOADING! \n\n");
@@ -234,11 +266,12 @@ namespace CricBlast_GUI.UI.User_Controls
                 thread.Start();
 
                 thread.Join();
+                Download_Finished();
             }
 
             Console.WriteLine("DOWNLOAD COMPLETE: " + downloadComplete);
 
-            Download_Finished();
+            
             Console.Write(AppDomain.CurrentDomain.BaseDirectory);
 
             Console.WriteLine("DOWNLOAD COMPLETE: " + downloadComplete);
@@ -246,6 +279,14 @@ namespace CricBlast_GUI.UI.User_Controls
             string successFile = Path.Combine(LocalLowAppdata, "InterTok", "TikTok." + Game, "success");
             if (File.Exists(successFile))
                 File.Delete(successFile);
+
+            
+
+            foreach (var proc in Process.GetProcessesByName("tiktokLiveApi"))
+            {
+                proc.Kill();
+            }
+
 
             Process process = new Process();
             process.StartInfo.FileName = $"{apiPath}"; // Replace with the path to your executable
@@ -310,6 +351,47 @@ namespace CricBlast_GUI.UI.User_Controls
                 ChangeButtonState(ConnectButton, true);
                 ChangeButtonState(StartGameButton, false);
             }));
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            MessageBoxYesNo msgbox = new MessageBoxYesNo(Selected.WarningMark, $"Are you sure you want to delete {Game}?");
+            msgbox.ShowDialog();
+            if(msgbox.result == true)
+            {
+                Directory.Delete(GameFolderPath, true);
+                new ChooseTeam(Username, Welcome.GameList).ShowDialog();
+            }
+            
+            
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            string apiPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tiktokLiveApi.exe");
+            MessageBoxYesNo msgbox = new MessageBoxYesNo(Selected.WarningMark, $"Are you sure you want to delete the Assets?");
+            msgbox.ShowDialog();
+            if (msgbox.result == true)
+            {
+                if (File.Exists(apiPath))
+                {
+                    foreach (var proc in Process.GetProcessesByName("tiktokLiveApi"))
+                    {
+                        proc.Kill();
+                    }
+                    File.Delete(apiPath);
+                    BeginInvoke((Action)(() => {
+                        ChangeImageColor(OnlineIcon, Color.Yellow);
+                        ChangeLabelText(StateLabel, "Live");
+                        ChangeButtonState(ConnectButton, true);
+                        ChangeButtonState(StartGameButton, false);
+                        ChangeButtonState(GoLiveButton, false);
+                    }));
+                }
+            }
+                
+            
         }
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

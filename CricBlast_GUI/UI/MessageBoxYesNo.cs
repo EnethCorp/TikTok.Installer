@@ -6,6 +6,8 @@ namespace CricBlast_GUI.UI
 {
     public partial class MessageBoxYesNo : Form
     {
+        public bool result = false;
+
         protected override CreateParams CreateParams
         {
             get
@@ -42,12 +44,14 @@ namespace CricBlast_GUI.UI
         private void yes_Click(object sender, EventArgs e)
         {
             Selected.MessageBoxYesOrNo = true;
+            this.result = true;
             Close();
         }
 
         private void no_Click(object sender, EventArgs e)
         {
             Selected.MessageBoxYesOrNo = false;
+            this.result = false;
             Close();
         }
     }

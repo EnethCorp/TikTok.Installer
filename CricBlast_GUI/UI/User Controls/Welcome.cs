@@ -23,7 +23,7 @@ namespace CricBlast_GUI.UI.User_Controls
             version: "1.0"
         );
 
-        string key_path = "C:\\key";
+        string key_path = "key";
         public static string key;
         public static List<string> GameList;
 

@@ -204,6 +204,14 @@ async def main():
     print(f"'{streamerName}'")
     try:
         await asyncio.gather(client.start(), socketApi.start_local_server(events=events, downloadedPfp=pfpDownloadFinished, statusPath=status_file_path), stdoutFlusher(), getViewerCount())
+    
+    except LiveNotFound as e:
+        #ctypes.windll.user32.MessageBoxW(None, f"You have been temporarly blocked from connecting to livestreams. Try again in {e.retry_after} seconds", "InterTok Error", 0)
+        with open(status_file_path, "w") as f:
+            f.write(f"It seems you are yet not live.")
+        print(e)
+        quit(-1)
+    
     except FailedFetchRoomInfo as e:
         #ctypes.windll.user32.MessageBoxW(None, "Could not connect to Livestream! Try using a VPN, your country could be blocked.", "InterTok Error", 0)
         
@@ -218,12 +226,7 @@ async def main():
             f.write(f"Temporary livestream block. Try again in {e.retry_after} seconds.")
         print(e)
         quit(-1)
-    except LiveNotFound as e:
-        #ctypes.windll.user32.MessageBoxW(None, f"You have been temporarly blocked from connecting to livestreams. Try again in {e.retry_after} seconds", "InterTok Error", 0)
-        with open(status_file_path, "w") as f:
-            f.write(f"It seems you are yet not live.")
-        print(e)
-        quit(-1)
+    
     except Exception as e: 
         with open(status_file_path, "w") as f:
             f.write("Unknown error occurred!.")

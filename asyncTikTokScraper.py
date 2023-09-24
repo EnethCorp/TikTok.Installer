@@ -37,7 +37,7 @@ async def downloadProfilePicture(url: str, username: str, outputpath: str):
     
     with open(file_path_input, "wb") as f:
         f.write(imgData)
-    subprocess.call(f"ffmpeg -y -i {file_path_input} -c:v png {file_path}")
+    subprocess.call(f"ffmpeg -y -i {file_path_input} -c:v png {file_path}", shell=True)
     os.remove(file_path_input)
     print("finished downloading: ", username)
 

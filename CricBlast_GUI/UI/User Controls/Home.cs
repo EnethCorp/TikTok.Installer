@@ -4,12 +4,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
+using System.Management;
 using System.Net;
 using System.Reflection;
 using System.Security.Policy;
 using System.Threading;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 //using Ionic.Zip;
 //using ZipFile = Ionic.Zip.ZipFile;
 
@@ -35,7 +37,23 @@ namespace CricBlast_GUI.UI.User_Controls
             UpdateHomeLabels();
             ChangeButtonState(ConnectButton, false);
             ChangeButtonState(StartGameButton, false);
+            ChangeButtonState(guna2Button4, false);
             GetFilePaths();
+
+            string processName = "tiktokLiveApi.exe";
+            string query = $"SELECT * FROM Win32_Process WHERE Name = '{processName}'";
+
+            // Connect to WMI and execute the query
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            {
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    // Terminate the process
+                    obj.InvokeMethod("Terminate", null);
+                    Console.WriteLine($"Terminated process: {processName}");
+                    Console.WriteLine("\n\nTerminated old API process.\n\n");
+                }
+            }
         }
 
         /* METHODS */
@@ -61,6 +79,11 @@ namespace CricBlast_GUI.UI.User_Controls
         {
             label.Text = _Text;
         }
+        private void ChangeButtonText(Guna2Button button, string _Text)
+        {
+            button.Text = _Text;
+        }
+
 
         private void GetFilePaths()
         {
@@ -101,7 +124,30 @@ namespace CricBlast_GUI.UI.User_Controls
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            new ChooseTeam(Username, Welcome.GameList).ShowDialog();
+            if (StateLabel.Text == "Running")
+            {
+                BeginInvoke((Action)(() => {
+                    new MessageBoxOk(Selected.ErrorMark, "Game is running, please stop it before updating", statusError: true).ShowDialog();
+                }));
+                return;
+            }
+
+            /* DELETE ALL GAME FILES */
+            System.IO.DirectoryInfo di = new DirectoryInfo(GameFolderPath);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+
+            /* REDOWNLOAD GAME FILES */
+            Invoke((Action)(() =>
+            {
+                new MessageBoxDownload("Update game now?", 2).ShowDialog();
+            }));
         }
 
         private void logout_Click(object sender, EventArgs e)
@@ -296,6 +342,7 @@ namespace CricBlast_GUI.UI.User_Controls
 
             Thread.Sleep(500);
 
+            bool firstConnectSuccess = false;
             Thread checkForSuccess = new Thread(() =>
             {
                 Console.WriteLine("Success file: " + successFile);
@@ -309,11 +356,13 @@ namespace CricBlast_GUI.UI.User_Controls
                             Console.WriteLine("file content: " + programStatus);
                             if (programStatus == "positive")
                             {
+                                firstConnectSuccess = true;
                                 Console.WriteLine("POSITIVE:: "+  programStatus);
                                 BeginInvoke((Action)(() => {
                                     Thread.Sleep(5000);
                                     ChangeLabelText(StateLabel, "Connected");
                                     ChangeButtonState(StartGameButton, true);
+                                    ChangeButtonState(guna2Button4, true);
                                 }));
                             }
                             else
@@ -333,9 +382,8 @@ namespace CricBlast_GUI.UI.User_Controls
                         }
                     }
                 }
-
-
             });
+
 
             checkForSuccess.Start();
 
@@ -344,13 +392,30 @@ namespace CricBlast_GUI.UI.User_Controls
             int returnValue = process.ExitCode;
             Console.WriteLine($"Api exited with return value: {returnValue}");
 
+            if (!firstConnectSuccess)
+            {
+                BeginInvoke((Action)(() => {
+                    ChangeImageColor(OnlineIcon, Color.Yellow);
+                    ChangeLabelText(StateLabel, "Live");
+                    ChangeButtonState(ConnectButton, true);
+                    ChangeButtonState(StartGameButton, false);
+                }));
+                return;
+            }
 
-            BeginInvoke((Action)(() => {
-                ChangeImageColor(OnlineIcon, Color.Yellow);
-                ChangeLabelText(StateLabel, "Live");
-                ChangeButtonState(ConnectButton, true);
-                ChangeButtonState(StartGameButton, false);
-            }));
+            while (true)
+            {
+                if (!autoRestart)
+                {
+                    BeginInvoke((Action)(() => {
+                        MainForm.Instance.mainPanel.Controls.Clear();
+                        MainForm.Instance.mainPanel.Controls.Add(value: new Home(Game, Username));
+                    }));
+                } else
+                {
+                    Thread.Sleep(5000);
+                }
+            }
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -392,6 +457,60 @@ namespace CricBlast_GUI.UI.User_Controls
             }
                 
             
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool autoRestart = false;
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            autoRestart = !autoRestart;
+            if (autoRestart)
+            {
+                this.guna2Button4.FillColor = Color.FromArgb(3, 119, 252);
+                ChangeButtonText(guna2Button4, "Auto Restart   ON");
+                try
+                {
+                    Process.Start("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\TikTok LIVE Studio");
+                }
+                catch (Exception)
+                {
+                    new MessageBoxOk(Selected.WarningMark, "Could not find TikTok Live Studio. Make sure to go live before connecting!", statusError: true).ShowDialog();
+                }
+
+                string autoRestartPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "autorestart.exe");
+                string apiPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tiktokLiveApi.exe");
+                string apiArguments = $"{Username} {Welcome.key} {Game}";
+
+
+                Process process = new Process();
+                process.StartInfo.FileName = $"{autoRestartPath}"; // Replace with the path to your executable
+                process.StartInfo.Arguments = $" {apiPath} {apiArguments} {Game}"; // Replace with any command-line arguments
+                process.Start();
+
+            } else
+            {
+                this.guna2Button4.FillColor = Color.FromArgb(53, 97, 148);
+                ChangeButtonText(guna2Button4, "Auto Restart   OFF");
+
+                string processName = "autorestart.exe";
+                string query = $"SELECT * FROM Win32_Process WHERE Name = '{processName}'";
+
+                // Connect to WMI and execute the query
+                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+                {
+                    foreach (ManagementObject obj in searcher.Get())
+                    {
+                        // Terminate the process
+                        obj.InvokeMethod("Terminate", null);
+                        Console.WriteLine($"Terminated process: {processName}");
+                        Console.WriteLine("\n\nTerminated old API process.\n\n");
+                    }
+                }
+            }
         }
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

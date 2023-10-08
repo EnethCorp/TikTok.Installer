@@ -151,6 +151,12 @@
     <Compile Include="UI\MessageBoxDownload.Designer.cs">
       <DependentUpon>MessageBoxDownload.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\MessageBoxOk .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MessageBoxOk .Designer.cs">
+      <DependentUpon>MessageBoxOk .cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SelectTeams.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,12 +283,6 @@
     <Compile Include="UI\MessageBoxYesNo.Designer.cs">
       <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MessageBoxOk.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\MessageBoxOk.Designer.cs">
-      <DependentUpon>MessageBoxOk.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Profile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MessageBoxDownload.resx">
       <DependentUpon>MessageBoxDownload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MessageBoxOk .resx">
+      <DependentUpon>MessageBoxOk .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SelectTeams.resx">
       <DependentUpon>SelectTeams.cs</DependentUpon>
@@ -391,9 +394,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MessageBoxYesNo.resx">
       <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\MessageBoxOk.resx">
-      <DependentUpon>MessageBoxOk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Profile.resx">
       <DependentUpon>Profile.cs</DependentUpon>

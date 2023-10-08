@@ -1,4 +1,6 @@
-﻿namespace CricBlast_GUI.UI.User_Controls
+﻿using System.Drawing;
+
+namespace CricBlast_GUI.UI.User_Controls
 {
     partial class Home
     {
@@ -30,12 +32,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.homeSubPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.OnlineIcon = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.logout = new System.Windows.Forms.Label();
             this.StateLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.menuPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.updateButton = new System.Windows.Forms.Label();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.ConnectButton = new Guna.UI2.WinForms.Guna2Button();
             this.StartGameButton = new Guna.UI2.WinForms.Guna2Button();
@@ -44,8 +48,7 @@
             this.logoPicture = new System.Windows.Forms.PictureBox();
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.homeSubPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OnlineIcon)).BeginInit();
             this.menuPanel.SuspendLayout();
@@ -59,7 +62,6 @@
             this.homeSubPanel.Controls.Add(this.label1);
             this.homeSubPanel.Controls.Add(this.OnlineIcon);
             this.homeSubPanel.Controls.Add(this.logout);
-            this.homeSubPanel.Controls.Add(this.updateButton);
             this.homeSubPanel.Controls.Add(this.StateLabel);
             this.homeSubPanel.Controls.Add(this.usernameLabel);
             this.homeSubPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -68,6 +70,20 @@
             this.homeSubPanel.ShadowDecoration.Parent = this.homeSubPanel;
             this.homeSubPanel.Size = new System.Drawing.Size(972, 720);
             this.homeSubPanel.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
+            this.label1.Location = new System.Drawing.Point(661, 634);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 30);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Delete Assets";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // OnlineIcon
             // 
@@ -124,6 +140,8 @@
             // 
             this.menuPanel.BackColor = System.Drawing.Color.Transparent;
             this.menuPanel.BackgroundImage = global::CricBlast_GUI.Properties.Resources.Home_Menu;
+            this.menuPanel.Controls.Add(this.guna2Button4);
+            this.menuPanel.Controls.Add(this.guna2Button3);
             this.menuPanel.Controls.Add(this.guna2Button2);
             this.menuPanel.Controls.Add(this.guna2Button1);
             this.menuPanel.Controls.Add(this.ConnectButton);
@@ -138,19 +156,61 @@
             this.menuPanel.Size = new System.Drawing.Size(308, 720);
             this.menuPanel.TabIndex = 11;
             // 
-            // updateButton
+            // guna2Button3
             // 
-            this.updateButton.AutoSize = true;
-            this.updateButton.BackColor = System.Drawing.Color.Transparent;
-            this.updateButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.updateButton.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateButton.ForeColor = System.Drawing.Color.Green;
-            this.updateButton.Location = new System.Drawing.Point(657, 634);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(156, 30);
-            this.updateButton.TabIndex = 8;
-            this.updateButton.Text = "Update Game";
-            this.updateButton.Click += new System.EventHandler(this.uninstallButton_Click);
+            this.guna2Button3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.BorderRadius = 10;
+            this.guna2Button3.CheckedState.Parent = this.guna2Button3;
+            this.guna2Button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button3.CustomImages.Parent = this.guna2Button3;
+            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button3.DisabledState.Parent = this.guna2Button3;
+            this.guna2Button3.FillColor = System.Drawing.Color.DimGray;
+            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.guna2Button3.ForeColor = System.Drawing.Color.White;
+            this.guna2Button3.HoverState.Parent = this.guna2Button3;
+            this.guna2Button3.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button3.ImageOffset = new System.Drawing.Point(3, 1);
+            this.guna2Button3.Location = new System.Drawing.Point(45, 513);
+            this.guna2Button3.Name = "guna2Button3";
+            this.guna2Button3.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
+            this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
+            this.guna2Button3.Size = new System.Drawing.Size(215, 44);
+            this.guna2Button3.TabIndex = 10;
+            this.guna2Button3.Text = "Change Game";
+            this.guna2Button3.TextOffset = new System.Drawing.Point(2, 0);
+            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
+            // 
+            // guna2Button2
+            // 
+            this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button2.BorderRadius = 10;
+            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
+            this.guna2Button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
+            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button2.DisabledState.Parent = this.guna2Button2;
+            this.guna2Button2.FillColor = System.Drawing.Color.Firebrick;
+            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.HoverState.Parent = this.guna2Button2;
+            this.guna2Button2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button2.ImageOffset = new System.Drawing.Point(3, 1);
+            this.guna2Button2.Location = new System.Drawing.Point(45, 613);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.PressedColor = System.Drawing.Color.Red;
+            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
+            this.guna2Button2.Size = new System.Drawing.Size(215, 44);
+            this.guna2Button2.TabIndex = 9;
+            this.guna2Button2.Text = "Delete Game";
+            this.guna2Button2.TextOffset = new System.Drawing.Point(2, 0);
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2Button1
             // 
@@ -164,7 +224,7 @@
             this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button1.DisabledState.Parent = this.guna2Button1;
-            this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
+            this.guna2Button1.FillColor = System.Drawing.Color.Green;
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
             this.guna2Button1.HoverState.Parent = this.guna2Button1;
@@ -176,7 +236,7 @@
             this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
             this.guna2Button1.Size = new System.Drawing.Size(215, 44);
             this.guna2Button1.TabIndex = 5;
-            this.guna2Button1.Text = "Change Game";
+            this.guna2Button1.Text = "Update Game";
             this.guna2Button1.TextOffset = new System.Drawing.Point(2, 0);
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
@@ -304,47 +364,34 @@
             this.DragControl2.TargetControl = this.homeSubPanel;
             this.DragControl2.TransparentWhileDrag = false;
             // 
-            // guna2Button2
+            // guna2Button4
             // 
-            this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button2.BorderRadius = 10;
-            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
-            this.guna2Button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.DisabledState.Parent = this.guna2Button2;
-            this.guna2Button2.FillColor = System.Drawing.Color.Firebrick;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.HoverState.Parent = this.guna2Button2;
-            this.guna2Button2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button2.ImageOffset = new System.Drawing.Point(3, 1);
-            this.guna2Button2.Location = new System.Drawing.Point(45, 613);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.PressedColor = System.Drawing.Color.Red;
-            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
-            this.guna2Button2.Size = new System.Drawing.Size(215, 44);
-            this.guna2Button2.TabIndex = 9;
-            this.guna2Button2.Text = "Delete Game";
-            this.guna2Button2.TextOffset = new System.Drawing.Point(2, 0);
-            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
-            this.label1.Location = new System.Drawing.Point(499, 634);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 30);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Delete Assets";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.guna2Button4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button4.BorderRadius = 10;
+            this.guna2Button4.CheckedState.Parent = this.guna2Button4;
+            this.guna2Button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button4.CustomImages.Parent = this.guna2Button4;
+            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button4.DisabledState.Parent = this.guna2Button4;
+            this.guna2Button4.FillColor = Color.FromArgb(53, 97, 148);
+            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.guna2Button4.ForeColor = System.Drawing.Color.White;
+            this.guna2Button4.HoverState.Parent = this.guna2Button4;
+            this.guna2Button4.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button4.ImageOffset = new System.Drawing.Point(3, 1);
+            this.guna2Button4.Location = new System.Drawing.Point(45, 277);
+            this.guna2Button4.Name = "guna2Button4";
+            this.guna2Button4.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(161)))), ((int)(((byte)(47)))));
+            this.guna2Button4.ShadowDecoration.Parent = this.guna2Button4;
+            this.guna2Button4.Size = new System.Drawing.Size(215, 44);
+            this.guna2Button4.TabIndex = 11;
+            this.guna2Button4.Text = "Auto Restart   OFF";
+            this.guna2Button4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button4.TextOffset = new System.Drawing.Point(2, 0);
+            this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
             // 
             // Home
             // 
@@ -383,8 +430,9 @@
         private Guna.UI2.WinForms.Guna2Button ConnectButton;
         private Guna.UI2.WinForms.Guna2CirclePictureBox userPhoto;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private System.Windows.Forms.Label updateButton;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button guna2Button4;
     }
 }
